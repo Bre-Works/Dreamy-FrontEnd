@@ -14,6 +14,60 @@
         android:id="@+id/textView2"
         android:textSize="48dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="72dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_marginTop="83dp"
+        android:text="add a task                            "
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/textView2" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox"
+        android:checked="false"
+        android:layout_alignTop="@+id/editText"
+        android:layout_toLeftOf="@+id/editText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText4"
+        android:layout_below="@+id/editText"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_marginTop="19dp"
+        android:layout_alignRight="@+id/textView2" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox3"
+        android:checked="false"
+        android:layout_alignBaseline="@+id/editText4"
+        android:layout_alignBottom="@+id/editText4"
+        android:layout_toLeftOf="@+id/editText4" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText5"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/editText4"
+        android:layout_alignRight="@+id/editText4"
+        android:layout_alignLeft="@+id/editText4" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox4"
+        android:checked="false"
+        android:layout_alignBaseline="@+id/editText5"
+        android:layout_alignBottom="@+id/editText5"
+        android:layout_toLeftOf="@+id/editText5" />
 
 </RelativeLayout>
