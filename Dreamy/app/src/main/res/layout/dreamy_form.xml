@@ -11,65 +11,67 @@
     tools:context=".DreamyHome"
     android:id="@+id/abc">
 
-    <TextView
-            android:text="@string/app_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="51dp"
-            android:textColor="#1057CA"
-            android:textSize="50dp"
-            android:id="@+id/title"
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="save"
+        android:id="@+id/saveDream"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dreamInput"
+        android:layout_marginTop="82dp"
+        android:hint="add your dream"
         android:layout_gravity="center_horizontal"
+        android:width="250dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/dreamInput"
-            android:layout_marginTop="34dp"
-            android:text="add your dream"
-            android:layout_below="@+id/title"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:width="250dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/milestones"
             android:id="@+id/milestone"
             android:layout_toStartOf="@+id/dreamInput"
-            android:layout_centerVertical="true"
-            android:layout_alignLeft="@+id/milestoneInput"
             android:textIsSelectable="false"
-            android:layout_toLeftOf="@+id/addMilestone" />
+            android:layout_above="@+id/addMilestone"
+            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@+id/milestoneInput" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/milestoneInput"
-            android:width="250dp"
-            android:layout_marginTop="32dp"
-            android:layout_below="@+id/milestone"
-            android:layout_alignRight="@+id/title" />
+            android:width="200dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true" />
 
-    <Button
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="add"
         android:id="@+id/addMilestone"
         android:layout_alignBottom="@+id/milestoneInput"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:background="@drawable/add_form"/>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/milestoneInput"
-        android:layout_alignLeft="@+id/milestoneInput"
-        android:layout_marginTop="33dp"
-        android:id="@+id/container"></LinearLayout>
+        android:id="@+id/container"
+        android:layout_below="@+id/addMilestone"
+        android:layout_alignRight="@+id/saveDream"></LinearLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_below="@+id/container"
+        android:layout_alignParentLeft="true" />
 
 </RelativeLayout>
