@@ -42,8 +42,9 @@
             android:id="@+id/milestone"
             android:layout_toStartOf="@+id/editText"
             android:layout_centerVertical="true"
-            android:layout_alignRight="@+id/editText2"
-            android:layout_alignEnd="@+id/editText2" />
+            android:layout_alignLeft="@+id/editText2"
+            android:textIsSelectable="false"
+            android:layout_toLeftOf="@+id/button" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -54,31 +55,12 @@
             android:layout_below="@+id/milestone"
             android:layout_alignRight="@+id/title" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText3"
-            android:width="250dp"
-            android:layout_below="@+id/editText2"
-            android:layout_alignLeft="@+id/editText2"
-            android:layout_alignStart="@+id/editText2" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText4"
-            android:width="250dp"
-            android:layout_below="@+id/editText3"
-            android:layout_alignLeft="@+id/editText3"
-            android:layout_alignStart="@+id/editText3" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="save"
+        android:text="add"
         android:id="@+id/button"
-        android:layout_marginTop="41dp"
-        android:layout_below="@+id/editText4"
-        android:layout_alignRight="@+id/editText4" />
+        android:layout_alignBottom="@+id/editText2"
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>
