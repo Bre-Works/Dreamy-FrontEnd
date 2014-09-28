@@ -1,6 +1,7 @@
 package com.breworks.dreamy;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +34,12 @@ public class Main extends Activity {
         if (id == R.id.action_settings) {
             return true;
         }
+        if (id == R.id.to_do_list) {
+            Intent intent = new Intent(Main.this, ToDoList.class);
+            startActivity(intent);
+            //setContentView(R.layout.todolist);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }
