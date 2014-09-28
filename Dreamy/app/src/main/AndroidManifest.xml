@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DreamForm" />
-        <activity android:name=".DreamForm" />
+        <activity android:name=".ToDoList" />
     </application>
 
 </manifest>

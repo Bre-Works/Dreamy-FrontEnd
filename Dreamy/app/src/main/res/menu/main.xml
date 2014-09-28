@@ -5,4 +5,9 @@
         android:title="@string/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never" />
+
+    <item android:id="@+id/to_do_list"
+        android:title="To Do List"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
 </menu>
