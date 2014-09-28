@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+/**
+ * Created by aidifauzan on 24-Sep-14.
+ */
 
 public class Main extends Activity {
 
