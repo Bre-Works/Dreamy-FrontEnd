@@ -1,56 +1,43 @@
 package com.breworks.dreamy;
 
         import android.app.Activity;
+        import android.app.DownloadManager;
         import android.content.Intent;
         import android.os.Bundle;
         import android.view.MotionEvent;
+        import android.view.Window;
 
 public class Splash extends Activity {
+
     private Thread mSplashThread;
+    /**
+      Duration of wait in seconds
+     */
+    private final int SPLASH_DISPLAY_LENGTH = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_ACTION_BAR);
+        getActionBar().hide();
         setContentView(R.layout.activity_splash);
-        final Splash sPlashScreen = this;
-
-        mSplashThread =  new Thread(){
-            @Override
-            public void run(){
-                try {
-                    synchronized(this){
-
-                        wait(5000);
-                    }
-                }
-                catch(InterruptedException ex){
-                }
-
-                finish();
-
-                Intent intent = new Intent();
-                intent.setClass(sPlashScreen, Main.class);
-                startActivity(intent);
-
-            }
-        };
-
-        mSplashThread.start();
+        IntentLauncher launch = new IntentLauncher();
+        launch.start();
     }
 
-
-    @Override
-
-    public boolean onTouchEvent(MotionEvent evt)
-    {
-        if(evt.getAction() == MotionEvent.ACTION_DOWN)
-        {
-            synchronized(mSplashThread){
-                mSplashThread.notifyAll();
+    private class IntentLauncher extends Thread {
+        public void run(){
+            try{
+                Thread.sleep(SPLASH_DISPLAY_LENGTH*1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+
+            //Start activity
+            Intent intent = new Intent(Splash.this, Main.class);
+            Splash.this.startActivity(intent);
+            Splash.this.finish();
+
         }
-        return true;
     }
 }
- 
- 
