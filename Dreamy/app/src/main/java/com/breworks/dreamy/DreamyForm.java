@@ -35,11 +35,12 @@ public class DreamyForm extends Activity implements View.OnClickListener {
 
         LayoutInflater inflater = (LayoutInflater)getBaseContext().getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
+
         final View addView = inflater.inflate(R.layout.dreamy_form_row, null);
 
         removeMilestone = (ImageButton)addView.findViewById(R.id.delMilestone);
 
-        TextView milestoneOut = (TextView)addView.findViewById(R.id.milestoneOut);
+        EditText milestoneOut = (EditText)addView.findViewById(R.id.milestoneOut);
 
         milestoneOut.setText(milestoneInput.getText().toString());
 
