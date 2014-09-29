@@ -1,8 +1,10 @@
 package com.breworks.dreamy;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -25,6 +27,8 @@ public class ToDoList extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_ACTION_BAR);
+        getActionBar().hide();
         setContentView(R.layout.todolist);
 
         btnAdd = (Button) findViewById(R.id.btnAdd);
@@ -51,5 +55,25 @@ public class ToDoList extends Activity {
         row.addView(textField);
         row.addView(checkbox);
         table.addView(row);
+    }
+
+    public void gotoTodo(View v){
+        Intent intent = new Intent(this, ToDoList.class);
+        startActivity(intent);
+    }
+
+    public void gotoHome(View v){
+        Intent intent = new Intent(this, Main.class);
+        startActivity(intent);
+    }
+
+    public void gotoNote(View v){
+        Intent intent = new Intent(this, Notes.class);
+        startActivity(intent);
+    }
+
+    public void gotoFreeTime(View v){
+        Intent intent = new Intent(this, FreeTime.class);
+        startActivity(intent);
     }
 }

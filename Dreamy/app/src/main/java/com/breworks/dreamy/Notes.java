@@ -21,7 +21,7 @@ public class Notes extends Activity{
     }
 
     public void gotoTodo(View v){
-        Intent intent = new Intent(this, TodoList.class);
+        Intent intent = new Intent(this, ToDoList.class);
         startActivity(intent);
     }
 
