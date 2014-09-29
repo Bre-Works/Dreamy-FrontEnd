@@ -31,13 +31,18 @@ public class Main extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
         if (id == R.id.to_do_list) {
             Intent intent = new Intent(Main.this, ToDoList.class);
             startActivity(intent);
             //setContentView(R.layout.todolist);
+        }
+        if (id == R.id.Dreamy_form) {
+            Intent intent = new Intent(Main.this, DreamyForm.class);
+            startActivity(intent);
+        }
+        if (id == R.id.action_settings) {
+            return true;
         }
 
         return super.onOptionsItemSelected(item);

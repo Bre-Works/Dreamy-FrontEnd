@@ -13,7 +13,7 @@ public class Splash extends Activity {
     /**
       Duration of wait in seconds
      */
-    private final int SPLASH_DISPLAY_LENGTH = 5;
+    private final int SPLASH_DISPLAY_LENGTH = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
