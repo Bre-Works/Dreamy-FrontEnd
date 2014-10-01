@@ -3,7 +3,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     tools:context=".Main"
-    android:background="#ffffff"
     android:clickable="false"
     android:focusableInTouchMode="false"
     android:focusable="false"
@@ -45,7 +44,8 @@
         android:id="@+id/linearLayout"
         android:layout_alignParentEnd="false"
         android:gravity="center|center_horizontal"
-        android:baselineAligned="true">
+        android:baselineAligned="true"
+        android:background="#170908ff">
 
         <ImageButton
             android:layout_width="60dip"
