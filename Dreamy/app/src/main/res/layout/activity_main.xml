@@ -31,7 +31,9 @@
         android:layout_alignEnd="@+id/textAdd"
         android:contentDescription="cloud"
         android:layout_alignParentEnd="false"
-        android:focusable="false" />
+        android:focusable="false"
+        android:onClick="gotoDreamyForm"
+        android:clickable="false" />
 
     <LinearLayout
         android:orientation="horizontal"

@@ -70,4 +70,9 @@ public class Main extends Activity {
         Intent intent = new Intent(this, FreeTime.class);
         startActivity(intent);
     }
+
+    public void gotoDreamyForm(View v){
+        Intent intent = new Intent(this, DreamyForm.class);
+        startActivity(intent);
+    }
 }
