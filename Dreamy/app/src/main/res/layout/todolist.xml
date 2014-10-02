@@ -12,7 +12,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="To Do List"
         android:id="@+id/textTitle"
-        android:textSize="32dp"
+        android:textSize="28dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -20,45 +20,54 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+"
-        android:id="@+id/btnAdd"
-        android:layout_column="22"
+        android:text="clear done"
+        android:id="@+id/btnClear"
+        android:layout_column="2"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true" />
 
-    <TableLayout
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tableTaskList"
-        android:layout_below="@+id/btnAdd">
+        android:id="@+id/scrollView"
+        android:layout_below="@+id/textTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="70dip">
 
-        <TableRow
+        <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rowTask">
+            android:id="@+id/tableTaskList"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="30dp">
 
-            <CheckBox
+            <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/checkBox1"
-                android:layout_column="1"
-                android:checked="false"
-                android:layout_alignTop="@+id/textField1"
-                android:layout_toLeftOf="@+id/textField1" />
+                android:id="@+id/rowTask">
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textField1"
-                android:layout_marginTop="83dp"
-                android:layout_column="2"
-                android:text="add a task                            "
-                android:layout_below="@+id/textTitle"
-                android:layout_alignLeft="@+id/textTitle" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/checkBox1"
+                    android:layout_column="1"
+                    android:checked="false"/>
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textField1"
+                    android:layout_column="2"
+                    android:hint="add a task"
+                    android:layout_below="@+id/textTitle"
+                    android:layout_alignLeft="@+id/textTitle" />
 
 
-        </TableRow>
-    </TableLayout>
+            </TableRow>
+
+
+        </TableLayout>
+    </ScrollView>
 
     <LinearLayout
         android:orientation="horizontal"
