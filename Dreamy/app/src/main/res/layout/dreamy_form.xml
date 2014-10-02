@@ -31,41 +31,27 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/milestones"
-            android:id="@+id/milestone"
-            android:layout_toStartOf="@+id/dreamInput"
-            android:textIsSelectable="false"
-            android:layout_above="@+id/addMilestone"
-            android:layout_alignParentLeft="true"
-            android:layout_alignRight="@+id/milestoneInput" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/milestoneInput"
-            android:width="200dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true" />
-
-    <ImageButton
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/addMilestone"
-        android:layout_alignBottom="@+id/milestoneInput"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/add_form"/>
+        android:id="@+id/milestoneInput"
+        android:hint="add your milestones"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:width="200dp"
+        android:layout_marginTop="70dp"
+        android:layout_below="@+id/dreamInput"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/saveDream"
+        android:layout_toStartOf="@+id/saveDream" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/container"
-        android:layout_below="@+id/addMilestone"
-        android:layout_alignRight="@+id/saveDream"></LinearLayout>
+        android:layout_alignRight="@+id/saveDream"
+        android:layout_alignEnd="@+id/saveDream"
+        android:layout_below="@+id/milestoneInput"></LinearLayout>
 
     <ScrollView
         android:layout_width="wrap_content"

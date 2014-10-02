@@ -3,71 +3,19 @@
 <RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
+        android:text="@string/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="To Do List"
-        android:id="@+id/textTitle"
-        android:textSize="28dp"
+        android:layout_marginTop="24dp"
+        android:textColor="#1057CA"
+        android:textSize="50dp"
+        android:id="@+id/title"
+        android:layout_gravity="center_horizontal"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="clear done"
-        android:id="@+id/btnClear"
-        android:layout_column="2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true" />
-
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
-        android:layout_below="@+id/textTitle"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="70dip">
-
-        <TableLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tableTaskList"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:layout_marginLeft="30dp">
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/rowTask">
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/checkBox1"
-                    android:layout_column="1"
-                    android:checked="false"/>
-
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textField1"
-                    android:layout_column="2"
-                    android:hint="add a task"
-                    android:layout_below="@+id/textTitle"
-                    android:layout_alignLeft="@+id/textTitle" />
-
-
-            </TableRow>
-
-
-        </TableLayout>
-    </ScrollView>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -97,23 +45,23 @@
             android:layout_width="60dip"
             android:layout_height="60dip"
             android:id="@+id/todo"
-            android:background="@drawable/todoactive"
+            android:background="@drawable/todoidle"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_gravity="center|bottom"
+            android:onClick="gotoTodo"
             android:layout_marginLeft="20dip" />
 
         <ImageButton
             android:layout_width="60dip"
             android:layout_height="60dip"
             android:id="@+id/note"
-            android:background="@drawable/notesidle"
+            android:background="@drawable/notesactive"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_gravity="center|bottom"
-            android:onClick="gotoNote"
             android:layout_marginLeft="20dip" />
 
         <ImageButton
@@ -130,4 +78,15 @@
             android:layout_marginLeft="20dip" />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="NOTES"
+        android:id="@+id/textView"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="106dp" />
+
 </RelativeLayout>

@@ -3,11 +3,16 @@
     tools:context=".Main" >
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
-        android:orderInCategory="100"
+        android:orderInCategory="110"
         android:showAsAction="never" />
 
     <item android:id="@+id/to_do_list"
         android:title="To Do List"
         android:orderInCategory="100"
+        android:showAsAction="never" />
+
+    <item android:id="@+id/Dreamy_form"
+        android:title="Add my Dream"
+        android:orderInCategory="90"
         android:showAsAction="never" />
 </menu>

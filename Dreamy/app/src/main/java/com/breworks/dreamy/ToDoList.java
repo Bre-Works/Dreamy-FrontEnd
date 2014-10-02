@@ -1,6 +1,7 @@
 package com.breworks.dreamy;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -90,5 +91,25 @@ public class ToDoList extends Activity {
         et.requestFocus();
         et.setMaxLines(1);
         et.setLayoutParams(new TableRow.LayoutParams(2));
+    }
+
+    public void gotoTodo(View v){
+        Intent intent = new Intent(this, ToDoList.class);
+        startActivity(intent);
+    }
+
+    public void gotoHome(View v){
+        Intent intent = new Intent(this, Main.class);
+        startActivity(intent);
+    }
+
+    public void gotoNote(View v){
+        Intent intent = new Intent(this, Notes.class);
+        startActivity(intent);
+    }
+
+    public void gotoFreeTime(View v){
+        Intent intent = new Intent(this, FreeTime.class);
+        startActivity(intent);
     }
 }

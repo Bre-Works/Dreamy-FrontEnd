@@ -13,11 +13,12 @@
         android:layout_marginLeft="45dp"
         android:background="@drawable/remove_form" />
 
-    <TextView
+    <EditText
         android:id="@+id/milestoneOut"
         android:layout_alignParentLeft="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_toLeftOf="@id/delMilestone"/>
 
 
