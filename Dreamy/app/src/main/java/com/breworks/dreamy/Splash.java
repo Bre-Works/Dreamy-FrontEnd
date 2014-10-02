@@ -32,7 +32,7 @@ public class Splash extends Activity {
             }
 
             //Start activity
-            Intent intent = new Intent(Splash.this, Main.class);
+            Intent intent = new Intent(Splash.this, logIn.class);
             Splash.this.startActivity(intent);
             Splash.this.finish();
 

@@ -18,4 +18,10 @@ public class logIn extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_in);
     }
+
+    public void goToMain(View vi){
+        Intent intent = new Intent(this, Main.class);
+        startActivity(intent);
+    }
+
 }
