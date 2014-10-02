@@ -11,7 +11,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="87dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentEnd="true"
+        android:id="@+id/relativeLayout">
 
         android:layout_alignParentEnd="true"
         android:id="@+id/rlayout">
@@ -26,7 +27,8 @@
             android:id="@+id/textView3"
             android:layout_gravity="center_horizontal"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentEnd="false" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -58,7 +60,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="sign in"
+            android:text="Login"
             android:id="@+id/signin"
             android:onClick="goToMain"
             android:layout_marginTop="67dp"
@@ -69,12 +71,13 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="sign up"
+            android:text="Sign Up"
             android:id="@+id/signup"
-            android:onClick="goToMain"
+            android:onClick="goToSignUp"
             android:layout_alignBottom="@+id/signin"
             android:layout_alignRight="@+id/editText2"
             android:layout_alignEnd="@+id/editText2" />
 
     </RelativeLayout>
+
 </RelativeLayout>
