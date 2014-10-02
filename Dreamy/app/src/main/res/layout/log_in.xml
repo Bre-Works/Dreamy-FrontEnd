@@ -61,18 +61,8 @@
             android:text="sign in"
             android:id="@+id/signin"
             android:onClick="goToMain"
-            android:layout_marginTop="67dp"
+            android:layout_marginTop="70dp"
             android:layout_below="@+id/editText2"
-            android:layout_alignLeft="@+id/editText2"
-            android:layout_alignStart="@+id/editText2" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="sign up"
-            android:id="@+id/signup"
-            android:onClick="goToMain"
-            android:layout_alignBottom="@+id/signin"
             android:layout_alignRight="@+id/editText2"
             android:layout_alignEnd="@+id/editText2" />
 
