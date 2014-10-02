@@ -68,6 +68,7 @@
             android:id="@+id/editText3"
             android:layout_column="2"
             android:text="password"
+            android:inputType="textPassword"
             android:layout_toStartOf="@+id/button2"
             android:layout_below="@+id/editText2"
             android:layout_alignLeft="@+id/editText2"

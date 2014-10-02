@@ -55,7 +55,9 @@
             android:layout_alignLeft="@+id/editText"
             android:layout_alignStart="@+id/editText"
             android:layout_alignRight="@+id/editText"
-            android:layout_alignEnd="@+id/editText" />
+            android:layout_alignEnd="@+id/editText"
+            android:inputType="textPassword"
+            android:visibility="visible" />
 
         <Button
             android:layout_width="wrap_content"
@@ -63,7 +65,7 @@
             android:text="Login"
             android:id="@+id/signin"
             android:onClick="goToMain"
-            android:layout_marginTop="67dp"
+            android:layout_marginTop="70dp"
             android:layout_below="@+id/editText2"
             android:layout_alignLeft="@+id/editText2"
             android:layout_alignStart="@+id/editText2" />
@@ -75,6 +77,7 @@
             android:id="@+id/signup"
             android:onClick="goToSignUp"
             android:layout_alignBottom="@+id/signin"
+
             android:layout_alignRight="@+id/editText2"
             android:layout_alignEnd="@+id/editText2" />
 
