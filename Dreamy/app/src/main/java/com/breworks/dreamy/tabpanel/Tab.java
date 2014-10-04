@@ -177,7 +177,7 @@ public class Tab {
 		btn.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View view, MotionEvent e) {
 				if (e.getAction() == MotionEvent.ACTION_DOWN) {
-					btn.setBackgroundColor(0x400000FF);
+					btn.setBackgroundColor(0x00000000);
 				} else if (e.getAction() == MotionEvent.ACTION_UP) {
 					btn.setBackgroundColor(0x00000000);
 				}

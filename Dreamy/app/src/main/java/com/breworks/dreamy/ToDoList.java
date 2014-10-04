@@ -14,6 +14,10 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.view.inputmethod.EditorInfo;
 
+import com.breworks.dreamy.tabpanel.MyTabHostProvider;
+import com.breworks.dreamy.tabpanel.TabHostProvider;
+import com.breworks.dreamy.tabpanel.TabView;
+
 import java.util.ArrayList;
 
 /**
@@ -34,7 +38,10 @@ public class ToDoList extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.todolist);
+        TabHostProvider tabProvider = new MyTabHostProvider(ToDoList.this);
+        TabView tabView = tabProvider.getTabHost("Todo");
+        tabView.setCurrentView(R.layout.todolist);
+        setContentView(tabView.render(1));
 
         btnClear = (Button) findViewById(R.id.btnClear);
         table = (TableLayout) findViewById(R.id.tableTaskList);
