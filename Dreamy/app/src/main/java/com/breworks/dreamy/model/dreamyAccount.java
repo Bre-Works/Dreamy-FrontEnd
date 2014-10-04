@@ -1,8 +1,9 @@
-package com.breworks.dreamy;
+package com.breworks.dreamy.model;
 
 /**
  * Created by Luck Eater on 10/4/2014.
  */
+
 public class dreamyAccount {
     //private variable
     String _accountName;

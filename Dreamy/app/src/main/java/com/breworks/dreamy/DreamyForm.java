@@ -6,15 +6,14 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.widget.ImageButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 /**
  * Created by arsianindita on 28-Sep-14.
  */
+
 public class DreamyForm extends Activity{
 
     LinearLayout container;
