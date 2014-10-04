@@ -1,5 +1,8 @@
 package com.breworks.dreamy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.accounts.Account;
 import android.content.ContentValues;
 import android.content.Context;
@@ -53,15 +56,40 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_ACCOUNT,account.getAccount);
+        values.put(KEY_ACCOUNT,dreamyAccount.getAccount());
+        values.put(KEY_EMAIL,dreamyAccount.getEmail());
+        values.put(KEY_PASS,dreamyAccount.getPassword());
+
+        //inserting row
+        db.insert(TABLE_ACCOUNTS,null,values);
+        db.close();//close database connection
     }
 
     //updating single account
-    public int updateAccount(Account account){}
-    //deleting single account
-    public void deleteAccount(Account account){}
+    public int updateAccount(Account account){
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(KEY_ACCOUNT, dreamyAccount.getAccount());
+        values.put(KEY_EMAIL,dreamyAccount.getEmail());
+        values.put(KEY_PASS,dreamyAccount.getPassword());
 
-
+        //updating row
+        return db.update(TABLE_ACCOUNTS,values,KEY_ACCOUNT+ "=?",
+                new String[]{String.valueOf(dreamyAccount.getAccount())});
     }
+
+    //deleting single account
+    public void deleteAccount(Account account){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_ACCOUNTS,KEY_ACCOUNT + "= ?",
+                new String[]{String.valueOf(dreamyAccount.getAccount())});
+        db.close();
+    }
+
+
+
+
+
+}
 
