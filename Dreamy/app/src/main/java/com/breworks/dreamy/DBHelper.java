@@ -74,7 +74,7 @@ public class DBHelper extends SQLiteOpenHelper {
     // Account table create statement
     private static final String CREATE_TABLE_ACCOUNT = "CREATE TABLE "
             + TABLE_ACCOUNT + "(" + KEY_ID + " INTEGER PRIMARY KEY," + ACCOUNT_NAME
-            + " TEXT," + EMAIL +" TEXT,"+ PASSWORD + " TEXT," + CREATED_AT
+            + " TEXT," + EMAIL + " TEXT," + PASSWORD + " TEXT," + CREATED_AT
             + " DATETIME" + ")";
 
     // Milestone table create statement
@@ -140,3 +140,4 @@ public class DBHelper extends SQLiteOpenHelper {
         // create new tables
         onCreate(db);
     }
+}
