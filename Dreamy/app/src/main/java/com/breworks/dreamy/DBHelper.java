@@ -32,10 +32,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // Common column names
     private static final String KEY_ID = "id";
-    private static final String KEY_CREATED_AT = "created_at";
+    private static final String CREATED_AT = "created_at";
 
     // Dream Table - column names
     private static final String DREAM_NAME = "dream";
+    private static final String DREAM_STATUS = "dream";
 
     // Account Table - column names
     private static final String EMAIL = "email";
@@ -47,7 +48,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String MILESTONE_STATUS = "status";
 
     // To Do List Table - column names
-    private static final String TO_DO = "todo";
+    private static final String TODO_NAME = "todo";
     private static final String TODO_STATUS = "todo_status";
 
     // Dream - Account Connect Tables
@@ -64,24 +65,51 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // Table Create Statements
 
-    // To do table create statement
-    private static final String CREATE_TABLE_TODO = "CREATE TABLE "
-            + TABLE_TODO + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_TODO
-            + " TEXT," + KEY_STATUS + " INTEGER," + KEY_CREATED_AT
+    // Dream table create statement
+    private static final String CREATE_TABLE_DREAM = "CREATE TABLE "
+            + TABLE_DREAM + "(" + KEY_ID + " INTEGER PRIMARY KEY," + DREAM_NAME
+            + " TEXT," + DREAM_STATUS + " INTEGER," + CREATED_AT
             + " DATETIME" + ")";
 
-    // Tag table create statement
-    private static final String CREATE_TABLE_TAG = "CREATE TABLE " + TABLE_TAG
-            + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_TAG_NAME + " TEXT,"
-            + KEY_CREATED_AT + " DATETIME" + ")";
+    // Account table create statement
+    private static final String CREATE_TABLE_ACCOUNT = "CREATE TABLE "
+            + TABLE_ACCOUNT + "(" + KEY_ID + " INTEGER PRIMARY KEY," + ACCOUNT_NAME
+            + " TEXT," + EMAIL +" TEXT,"+ PASSWORD + " TEXT," + CREATED_AT
+            + " DATETIME" + ")";
+
+    // Milestone table create statement
+    private static final String CREATE_TABLE_MILESTONE = "CREATE TABLE "
+            + TABLE_MILESTONE + "(" + KEY_ID + " INTEGER PRIMARY KEY," + MILESTONE_NAME
+            + " TEXT," + MILESTONE_STATUS + " INTEGER," + CREATED_AT
+            + " DATETIME" + ")";
+
+    // Milestone table create statement
+    private static final String CREATE_TABLE_TODO = "CREATE TABLE "
+            + TABLE_TODO + "(" + KEY_ID + " INTEGER PRIMARY KEY," + TODO_NAME
+            + " TEXT," + TODO_STATUS + " INTEGER," + CREATED_AT
+            + " DATETIME" + ")";
+
+    // Connector Create Statement
 
     // todo_tag table create statement
-    private static final String CREATE_TABLE_TODO_TAG = "CREATE TABLE "
-            + TABLE_TODO_TAG + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
-            + KEY_TODO_ID + " INTEGER," + KEY_TAG_ID + " INTEGER,"
-            + KEY_CREATED_AT + " DATETIME" + ")";
+    private static final String CREATE_TABLE_DREAM_ACCOUNT = "CREATE TABLE "
+            + TABLE_ACCOUNT_DREAM + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
+            + ACCOUNT_ID + " INTEGER," + DREAM_ID + " INTEGER,"
+            + CREATED_AT + " DATETIME" + ")";
 
-    public DatabaseHelper(Context context) {
+    // todo_tag table create statement
+    private static final String CREATE_TABLE_DREAM_MILESTONE = "CREATE TABLE "
+            + TABLE_DREAM_MILESTONE + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
+            + DREAM_ID_2 + " INTEGER," + MILESTONE_ID + " INTEGER,"
+            + CREATED_AT + " DATETIME" + ")";
+
+    // todo_tag table create statement
+    private static final String CREATE_TABLE_MILESTONE_TODO = "CREATE TABLE "
+            + TABLE_MILESTONE_TODO + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
+            + MILESTONE_ID_2 + " INTEGER," + TODO_ID + " INTEGER,"
+            + CREATED_AT + " DATETIME" + ")";
+
+    public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -90,16 +118,24 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // creating required tables
         db.execSQL(CREATE_TABLE_TODO);
-        db.execSQL(CREATE_TABLE_TAG);
-        db.execSQL(CREATE_TABLE_TODO_TAG);
+        db.execSQL(CREATE_TABLE_ACCOUNT);
+        db.execSQL(CREATE_TABLE_DREAM);
+        db.execSQL(CREATE_TABLE_MILESTONE);
+        db.execSQL(CREATE_TABLE_DREAM_ACCOUNT);
+        db.execSQL(CREATE_TABLE_DREAM_MILESTONE);
+        db.execSQL(CREATE_TABLE_MILESTONE_TODO);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // on upgrade drop older tables
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TAG);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO_TAG);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DREAM);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ACCOUNT);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MILESTONE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DREAM_MILESTONE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MILESTONE_TODO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ACCOUNT_DREAM);
 
         // create new tables
         onCreate(db);
