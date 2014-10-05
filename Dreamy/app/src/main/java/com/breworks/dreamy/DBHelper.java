@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.breworks.dreamy.model.Dream;
 import com.breworks.dreamy.model.Todo;
 
 import java.text.SimpleDateFormat;
@@ -150,13 +151,12 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-
-// TO DO METHOD
+// ------------------------ "todos" table methods ----------------//
 
     /*
      * Creating a to do
      */
-    public long createToDo(Todo todo, long[] tag_ids) {
+    public long createToDo(Todo todo) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -166,11 +166,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // insert row
         long todo_id = db.insert(TABLE_TODO, null, values);
-
-        // assigning tags to to do
-        for (long tag_id : tag_ids) {
-            createTodoTag(todo_id, tag_id);
-        }
 
         return todo_id;
     }
@@ -273,7 +268,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 td.setName((c.getString(c.getColumnIndex(TODO_NAME))));
                 td.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
 
-                // adding to todo list
+                // adding to to do list
                 todos.add(td);
             } while (c.moveToNext());
         }
@@ -305,6 +300,158 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[] { String.valueOf(todo_id) });
     }
 
+// ------------------------ "dreams" table methods ----------------//
+
+    /*
+     * Creating a dream
+     */
+    public long createDream(Dream dream, long[] milestone_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(DREAM_NAME, dream.getName());
+        values.put(DREAM_STATUS, dream.getStatus());
+        values.put(CREATED_AT, getDateTime());
+
+        // insert row
+        long dream_id = db.insert(TABLE_DREAM, null, values);
+
+        // assigning tags to to do
+        for (long milestone_ids : milestone_id) {
+            createTodoTag(dream_id, milestone_id);
+        }
+
+        return dream_id;
+    }
+
+    // Fetching single Dream
+    // With ID
+    public Dream getDreamwithID(long dream_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_DREAM + " WHERE "
+                + KEY_ID + " = " + dream_id;
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        Dream dr = new Dream();
+        dr.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+        dr.setName((c.getString(c.getColumnIndex(DREAM_NAME))));
+        dr.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
+
+        return dr;
+    }
+
+    // With Name
+    public Dream getDreamwithName(String dream_name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_DREAM + " WHERE "
+                + DREAM_NAME + " = " + dream_name;
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        Dream dr = new Dream();
+        dr.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+        dr.setName((c.getString(c.getColumnIndex(DREAM_NAME))));
+        dr.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
+
+        return dr;
+    }
+
+    /*
+     * getting all dreams
+     * */
+    public List<Dream> getAllDreams() {
+        List<Dream> dreams = new ArrayList<Dream>();
+        String selectQuery = "SELECT  * FROM " + TABLE_DREAM;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Dream dr = new Dream();
+                dr.setId(c.getInt((c.getColumnIndex(KEY_ID))));
+                dr.setName((c.getString(c.getColumnIndex(DREAM_NAME))));
+                dr.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
+
+                // adding to dreams list
+                dreams.add(dr);
+            } while (c.moveToNext());
+        }
+
+        return dreams;
+    }
+
+    /*
+     * getting all todos under single milestone
+     * */
+    public List<Dream> getAllDreamsByAccount(String account_name) {
+        List<Dream> dreams = new ArrayList<Dream>();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_DREAM + " dr, "
+                + TABLE_ACCOUNT + " ac, " + TABLE_ACCOUNT_DREAM + " ad WHERE ac."
+                + ACCOUNT_NAME + " = '" + account_name + "'" + " AND ac." + KEY_ID
+                + " = " + "ad." + ACCOUNT_ID + " AND dr." + DREAM_ID + " = "
+                + "ad." + DREAM_ID_2;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Dream dr = new Dream();
+                dr.setId(c.getInt((c.getColumnIndex(KEY_ID))));
+                dr.setName((c.getString(c.getColumnIndex(TODO_NAME))));
+                dr.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
+
+                // adding to dreams
+                dreams.add(dr);
+            } while (c.moveToNext());
+        }
+        return dreams;
+    }
+
+    /*
+     * Updating a to do
+     */
+    public int updateDreams(Dream dream) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(DREAM_NAME, dream.getName());
+        values.put(DREAM_STATUS, dream.getStatus());
+
+        // updating row
+        return db.update(TABLE_DREAM, values, KEY_ID + " = ?",
+                new String[] { String.valueOf(dream.getId()) });
+    }
+
+    /*
+     * Deleting a to do
+     */
+    public void deleteDreams(long dream_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_DREAM, KEY_ID + " = ?",
+                new String[] { String.valueOf(dream_id) });
+    }
 
 
     /**
