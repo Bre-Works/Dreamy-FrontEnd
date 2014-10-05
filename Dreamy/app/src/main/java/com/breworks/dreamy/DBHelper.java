@@ -1,8 +1,19 @@
 package com.breworks.dreamy;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.breworks.dreamy.model.Todo;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Ryan on 04/10/2014.
@@ -63,8 +74,6 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String MILESTONE_ID_2 = "milestone_id";
     private static final String TODO_ID = "todo_id";
 
-    // Table Create Statements
-
     // Dream table create statement
     private static final String CREATE_TABLE_DREAM = "CREATE TABLE "
             + TABLE_DREAM + "(" + KEY_ID + " INTEGER PRIMARY KEY," + DREAM_NAME
@@ -90,25 +99,25 @@ public class DBHelper extends SQLiteOpenHelper {
             + " DATETIME" + ")";
 
     // Connector Create Statement
-
-    // todo_tag table create statement
-    private static final String CREATE_TABLE_DREAM_ACCOUNT = "CREATE TABLE "
-            + TABLE_ACCOUNT_DREAM + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
-            + ACCOUNT_ID + " INTEGER," + DREAM_ID + " INTEGER,"
-            + CREATED_AT + " DATETIME" + ")";
-
-    // todo_tag table create statement
-    private static final String CREATE_TABLE_DREAM_MILESTONE = "CREATE TABLE "
-            + TABLE_DREAM_MILESTONE + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
-            + DREAM_ID_2 + " INTEGER," + MILESTONE_ID + " INTEGER,"
-            + CREATED_AT + " DATETIME" + ")";
-
-    // todo_tag table create statement
+    // Table Milestone To do Connector  create statement
     private static final String CREATE_TABLE_MILESTONE_TODO = "CREATE TABLE "
             + TABLE_MILESTONE_TODO + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
             + MILESTONE_ID_2 + " INTEGER," + TODO_ID + " INTEGER,"
             + CREATED_AT + " DATETIME" + ")";
 
+    // Table Dream Account Connector Create Statements
+    private static final String CREATE_TABLE_DREAM_ACCOUNT = "CREATE TABLE "
+            + TABLE_ACCOUNT_DREAM + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
+            + ACCOUNT_ID + " INTEGER," + DREAM_ID + " INTEGER,"
+            + CREATED_AT + " DATETIME" + ")";
+
+    //Table Dream Milestone Create Statements.
+    private static final String CREATE_TABLE_DREAM_MILESTONE = "CREATE TABLE "
+            + TABLE_DREAM_MILESTONE + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
+            + DREAM_ID_2 + " INTEGER," + MILESTONE_ID + " INTEGER,"
+            + CREATED_AT + " DATETIME" + ")";
+
+    //constructor
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -139,5 +148,172 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // create new tables
         onCreate(db);
+    }
+
+
+// TO DO METHOD
+
+    /*
+     * Creating a to do
+     */
+    public long createToDo(Todo todo, long[] tag_ids) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(TODO_NAME, todo.getName());
+        values.put(TODO_STATUS, todo.getStatus());
+        values.put(CREATED_AT, getDateTime());
+
+        // insert row
+        long todo_id = db.insert(TABLE_TODO, null, values);
+
+        // assigning tags to to do
+        for (long tag_id : tag_ids) {
+            createTodoTag(todo_id, tag_id);
+        }
+
+        return todo_id;
+    }
+
+    // Fetching single To do
+    // With ID
+    public Todo getTodowithID(long todo_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_TODO + " WHERE "
+                + KEY_ID + " = " + todo_id;
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        Todo td = new Todo();
+        td.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+        td.setName((c.getString(c.getColumnIndex(TODO_NAME))));
+        td.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
+
+        return td;
+    }
+
+    // With Name
+    public Todo getTodowithName(String todo_name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_TODO + " WHERE "
+                + TODO_NAME + " = " + todo_name;
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        Todo td = new Todo();
+        td.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+        td.setName((c.getString(c.getColumnIndex(TODO_NAME))));
+        td.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
+
+        return td;
+    }
+
+    /*
+     * getting all todos
+     * */
+    public List<Todo> getAllToDos() {
+        List<Todo> todos = new ArrayList<Todo>();
+        String selectQuery = "SELECT  * FROM " + TABLE_TODO;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Todo td = new Todo();
+                td.setId(c.getInt((c.getColumnIndex(KEY_ID))));
+                td.setName((c.getString(c.getColumnIndex(TODO_NAME))));
+                td.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
+
+                // adding to to do list
+                todos.add(td);
+            } while (c.moveToNext());
+        }
+
+        return todos;
+    }
+
+   /*
+    * getting all todos under single milestone
+    * */
+    public List<Todo> getAllToDosByMilestone(String milestone_name) {
+        List<Todo> todos = new ArrayList<Todo>();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_TODO + " td, "
+                + TABLE_MILESTONE + " ms, " + TABLE_MILESTONE_TODO + " mt WHERE ms."
+                + MILESTONE_NAME + " = '" + milestone_name + "'" + " AND ms." + KEY_ID
+                + " = " + "mt." + MILESTONE_ID_2 + " AND td." + KEY_ID + " = "
+                + "mt." + TODO_ID;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Todo td = new Todo();
+                td.setId(c.getInt((c.getColumnIndex(KEY_ID))));
+                td.setName((c.getString(c.getColumnIndex(TODO_NAME))));
+                td.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
+
+                // adding to todo list
+                todos.add(td);
+            } while (c.moveToNext());
+        }
+
+        return todos;
+    }
+
+    /*
+     * Updating a to do
+     */
+    public int updateToDo(Todo todo) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(TODO_NAME, todo.getName());
+        values.put(TODO_STATUS, todo.getStatus());
+
+        // updating row
+        return db.update(TABLE_TODO, values, KEY_ID + " = ?",
+                new String[] { String.valueOf(todo.getId()) });
+    }
+
+    /*
+     * Deleting a to do
+     */
+    public void deleteToDo(long todo_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_TODO, KEY_ID + " = ?",
+                new String[] { String.valueOf(todo_id) });
+    }
+
+
+
+    /**
+     * get datetime
+     */
+    private String getDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }
