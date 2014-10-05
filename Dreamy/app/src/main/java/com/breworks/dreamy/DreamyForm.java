@@ -21,6 +21,7 @@ public class DreamyForm extends Activity{
     ImageButton addMilestone;
     EditText milestoneInput;
     ImageButton removeMilestone;
+    EditText dreamInput;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -28,7 +29,13 @@ public class DreamyForm extends Activity{
         setContentView(R.layout.dreamy_form);
         milestoneInput = (EditText) findViewById(R.id.milestoneInput);
         container = (LinearLayout) findViewById(R.id.container);
+        dreamInput = (EditText) findViewById(R.id.dreamInput);
 
+        DBHelper dbh = new DBHelper(this);
+        Intent intent = getIntent();
+        if(intent.getStringExtra("key")!= null) {
+            dreamInput.setText(intent.getStringExtra("key"));
+        }
 
         milestoneInput.setOnKeyListener(new View.OnKeyListener() {
 

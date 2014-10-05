@@ -53,7 +53,7 @@ public class Main extends Activity {
         List<Dream> dreams = dbh.getAllDreams();
 
 
-        for (Dream dr : dreams) {
+        for (final Dream dr : dreams) {
 
             String log = "Id: " + dr.getId() + " ,Name: " + dr.getName() + " ,Status: " + dr.getStatus();
             // Writing Contacts to log
@@ -70,6 +70,7 @@ public class Main extends Activity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(Main.this, DreamyForm.class);
+                    intent.putExtra("key",dr.getName());
                     startActivity(intent);
                 }
             });
@@ -78,6 +79,7 @@ public class Main extends Activity {
 
             Log.d("Name: ", log);
         }
+        dbh.closeDB();
     }
 
 
