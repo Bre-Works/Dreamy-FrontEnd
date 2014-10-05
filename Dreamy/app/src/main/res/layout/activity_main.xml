@@ -12,30 +12,26 @@
         android:text="Dreamy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="79dp"
+        android:layout_marginTop="40dp"
         android:textSize="50sp"
         android:textColor="#ff69aaff"
+        android:id="@+id/textAdd"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/textAdd" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageButton"
-        android:layout_toStartOf="@+id/textAdd"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/textAdd"
-        android:layout_alignStart="@+id/textAdd"
-        android:layout_alignRight="@+id/textAdd"
-        android:layout_alignEnd="@+id/textAdd"
-        android:contentDescription="cloud"
-        android:layout_alignParentEnd="false"
-        android:focusable="false"
-        android:onClick="gotoDreamyForm"
-        android:clickable="false" />
+        android:layout_centerHorizontal="true" />
 
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:weightSum="1"
+        android:id="@+id/linearView"
+        android:layout_below="@+id/adddreamButton">
+
+
+    </LinearLayout>
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -45,7 +41,6 @@
         android:background="@drawable/adddream"
         android:onClick="gotoDreamyForm"
         android:layout_below="@+id/textAdd"
-        android:layout_toRightOf="@+id/textAdd"
-        android:layout_marginTop="41dp" />
+        android:layout_toRightOf="@+id/textAdd" />
 
 </RelativeLayout>

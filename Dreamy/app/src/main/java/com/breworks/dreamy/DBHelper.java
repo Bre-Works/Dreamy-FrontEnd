@@ -48,8 +48,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CREATED_AT = "created_at";
 
     // Dream Table - column names
-    private static final String DREAM_NAME = "dream";
-    private static final String DREAM_STATUS = "dream";
+    private static final String DREAM_NAME = "dreaming";
+    private static final String DREAM_STATUS = "dreamstatus";
 
     // Account Table - column names
     private static final String EMAIL = "email";
@@ -58,7 +58,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // Milestone Table - column names
     private static final String MILESTONE_NAME = "milestoneName";
-    private static final String MILESTONE_STATUS = "status";
+    private static final String MILESTONE_STATUS = "milestoneStatus";
 
     // To Do List Table - column names
     private static final String TODO_NAME = "todo";
@@ -306,7 +306,7 @@ public class DBHelper extends SQLiteOpenHelper {
     /*
      * Creating a dream
      */
-    public long createDream(Dream dream, long[] milestone_id) {
+    public long createDream(Dream dream) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -318,10 +318,10 @@ public class DBHelper extends SQLiteOpenHelper {
         long dream_id = db.insert(TABLE_DREAM, null, values);
 
         // assigning tags to to do
-        for (long milestone_ids : milestone_id) {
+       /* for (long milestone_ids : milestone_id) {
             createDreamMilestone(dream_id, milestone_ids);
         }
-
+        */
         return dream_id;
     }
 

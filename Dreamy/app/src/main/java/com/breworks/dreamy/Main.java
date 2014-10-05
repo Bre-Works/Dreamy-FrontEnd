@@ -3,19 +3,27 @@ package com.breworks.dreamy;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.breworks.dreamy.model.Dream;
 import com.breworks.dreamy.tabpanel.MyTabHostProvider;
 import com.breworks.dreamy.tabpanel.TabHostProvider;
 import com.breworks.dreamy.tabpanel.TabView;
+
+import java.util.List;
 
 /**
  * Created by aidifauzan on 24-Sep-14.
  */
 
 public class Main extends Activity {
+
+    LinearLayout linearView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +32,32 @@ public class Main extends Activity {
         TabView tabView = tabProvider.getTabHost("Home");
         tabView.setCurrentView(R.layout.activity_main);
         setContentView(tabView.render(0));
+        linearView = (LinearLayout) findViewById(R.id.linearView);
+
+        DBHelper dbh = new DBHelper(this);
+        // Inserting Contacts
+        if(dbh.getAllDreams() == null) {
+            Log.d("Insert: ", "Inserting ..");
+            dbh.createDream(new Dream(1, "Conquer The World", 0));
+            dbh.createDream(new Dream(2, "Make a Homunculus", 0));
+        }
+
+        // Reading all contacts
+
+        Log.d("Reading: ", "Reading all contacts..");
+        List<Dream> dreams = dbh.getAllDreams();
+
+
+        for (Dream dr : dreams) {
+
+            String log = "Id: " + dr.getId() + " ,Name: " + dr.getName() + " ,Status: " + dr.getStatus();
+            // Writing Contacts to log
+            TextView Dc = new TextView(this);
+            Dc.setText(dr.getName());
+            linearView.addView(Dc);
+
+            Log.d("Name: ", log);
+        }
     }
 
 
