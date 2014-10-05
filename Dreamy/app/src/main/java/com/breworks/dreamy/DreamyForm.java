@@ -2,6 +2,7 @@ package com.breworks.dreamy;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -25,11 +26,9 @@ public class DreamyForm extends Activity{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dreamy_form);
-        //addMilestone = (ImageButton) findViewById(R.id.addMilestone);
         milestoneInput = (EditText) findViewById(R.id.milestoneInput);
         container = (LinearLayout) findViewById(R.id.container);
 
-        //addMilestone.setOnClickListener(this);
 
         milestoneInput.setOnKeyListener(new View.OnKeyListener() {
 
@@ -65,6 +64,11 @@ public class DreamyForm extends Activity{
                     return false;
                 }
             });
+    }
+
+    public void saveBackToHome(View v){
+        Intent intent = new Intent(this, Main.class);
+        startActivity(intent);
     }
 
 

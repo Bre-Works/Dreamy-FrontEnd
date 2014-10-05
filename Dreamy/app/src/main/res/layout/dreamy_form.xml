@@ -69,7 +69,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/milestoneInput"
         android:layout_alignEnd="@+id/milestoneInput"
-        android:layout_toRightOf="@+id/dreamInput" />
+        android:layout_toRightOf="@+id/dreamInput"
+        android:onClick="saveBackToHome"/>
 
     <TextView
         android:text="Let's Dream"
