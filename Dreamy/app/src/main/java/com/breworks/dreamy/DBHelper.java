@@ -319,7 +319,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // assigning tags to to do
         for (long milestone_ids : milestone_id) {
-            //createTodoTag(dream_id, milestone_id);
+            createDreamMilestone(dream_id, milestone_ids);
         }
 
         return dream_id;
@@ -576,6 +576,40 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_ACCOUNT, KEY_ID + " = ?",
                 new String[] { String.valueOf(acc_id) });
+    }
+
+// ------------------------ "dreams_milestone" table methods ----------------//
+
+    /*
+     * Creating dream_milestone
+     */
+    public long createDreamMilestone(long dream_id, long milestone_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(DREAM_ID_2, dream_id);
+        values.put(MILESTONE_ID, milestone_id);
+        values.put(CREATED_AT, getDateTime());
+
+        long id = db.insert(TABLE_DREAM_MILESTONE, null, values);
+
+        return id;
+    }
+
+    /**
+     * Deleting a dream_milestone
+     */
+    public void deleteDreamMilestone(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_DREAM_MILESTONE, KEY_ID + " = ?",
+                new String[] { String.valueOf(id) });
+    }
+
+    // closing database
+    public void closeDB() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        if (db != null && db.isOpen())
+            db.close();
     }
 
     /**
