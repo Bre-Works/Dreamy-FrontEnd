@@ -11,24 +11,16 @@
     tools:context=".DreamyHome"
     android:id="@+id/abc">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="save"
-        android:id="@+id/saveDream"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/dreamInput"
-        android:layout_marginTop="82dp"
+        android:layout_marginTop="52dp"
         android:hint="add your dream"
         android:layout_gravity="center_horizontal"
         android:width="250dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/saveDreamForm"
         android:layout_centerHorizontal="true" />
 
     <EditText
@@ -41,23 +33,37 @@
         android:layout_marginTop="70dp"
         android:layout_below="@+id/dreamInput"
         android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/saveDream"
-        android:layout_toStartOf="@+id/saveDream" />
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/container"
-        android:layout_alignRight="@+id/saveDream"
-        android:layout_alignEnd="@+id/saveDream"
-        android:layout_below="@+id/milestoneInput"></LinearLayout>
+        android:layout_alignRight="@+id/scrollView"
+        android:layout_alignEnd="@+id/scrollView" />
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scrollView"
-        android:layout_below="@+id/container"
-        android:layout_alignParentLeft="true" />
+        android:layout_below="@+id/milestoneInput"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/container"
+            android:layout_alignRight="@+id/saveDream"
+            android:layout_alignEnd="@+id/saveDream"
+            android:layout_below="@+id/milestoneInput"></LinearLayout>
+
+       </ScrollView>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/saveDreamForm"
+        android:background="@drawable/nextbutton"
+        android:layout_toEndOf="@+id/dreamInput"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/milestoneInput"
+        android:layout_alignEnd="@+id/milestoneInput"
+        android:layout_toRightOf="@+id/dreamInput" />
 
 </RelativeLayout>
