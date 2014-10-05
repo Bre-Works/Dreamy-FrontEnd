@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.breworks.dreamy.model.Dream;
 import com.breworks.dreamy.model.Todo;
+import com.breworks.dreamy.model.dreamyAccount;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -398,7 +399,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     /*
-     * getting all todos under single milestone
+     * getting all dreams under single accounts
      * */
     public List<Dream> getAllDreamsByAccount(String account_name) {
         List<Dream> dreams = new ArrayList<Dream>();
@@ -430,7 +431,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     /*
-     * Updating a to do
+     * Updating a dream
      */
     public int updateDreams(Dream dream) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -445,7 +446,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     /*
-     * Deleting a to do
+     * Deleting a dream
      */
     public void deleteDreams(long dream_id) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -453,6 +454,129 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[] { String.valueOf(dream_id) });
     }
 
+// ------------------------ "accounts" table methods ----------------//
+
+    /*
+     * Creating an Accounts
+     */
+    public long createAccounts(dreamyAccount acc) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(ACCOUNT_NAME, acc.getUserID());
+        values.put(EMAIL, acc.getUserID());
+        values.put(PASSWORD, acc.getPassword());
+        values.put(CREATED_AT, getDateTime());
+
+        // insert row
+        long acc_id = db.insert(TABLE_ACCOUNT, null, values);
+
+        return acc_id;
+    }
+
+    // Fetching single Account
+    // With ID
+    public dreamyAccount getAccountwithID(long acc_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_ACCOUNT + " WHERE "
+                + KEY_ID + " = " + acc_id;
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        dreamyAccount acc = new dreamyAccount();
+        acc.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+        acc.setEmail((c.getString(c.getColumnIndex(EMAIL))));
+        acc.setUserID((c.getString(c.getColumnIndex(ACCOUNT_NAME))));
+        acc.setPassword((c.getString(c.getColumnIndex(PASSWORD))));
+        acc.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
+
+        return acc;
+    }
+
+    // With Name
+    public dreamyAccount getAccountwithID(String acc_name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_ACCOUNT + " WHERE "
+                + ACCOUNT_NAME + " = " + acc_name;
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        dreamyAccount acc = new dreamyAccount();
+        acc.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+        acc.setEmail((c.getString(c.getColumnIndex(EMAIL))));
+        acc.setUserID((c.getString(c.getColumnIndex(ACCOUNT_NAME))));
+        acc.setPassword((c.getString(c.getColumnIndex(PASSWORD))));
+        acc.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
+
+        return acc;
+    }
+
+    /*
+     * getting all accounts
+     * */
+    public List<dreamyAccount> getAllAccounts() {
+        List<dreamyAccount> accounts = new ArrayList<dreamyAccount>();
+        String selectQuery = "SELECT  * FROM " + TABLE_ACCOUNT;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                dreamyAccount acc = new dreamyAccount();
+                acc.setId(c.getInt((c.getColumnIndex(KEY_ID))));
+                acc.setUserID((c.getString(c.getColumnIndex(ACCOUNT_NAME))));
+                acc.setEmail((c.getString(c.getColumnIndex(EMAIL))));
+                acc.setPassword((c.getString(c.getColumnIndex(PASSWORD))));
+                acc.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
+
+                // adding to dreams list
+                accounts.add(acc);
+            } while (c.moveToNext());
+        }
+
+        return accounts;
+    }
+
+    /*
+     * Updating a accounts
+     */
+    public int updateAccounts(dreamyAccount account) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(ACCOUNT_NAME,account.getUserID());
+        values.put(EMAIL, account.getEmail());
+        values.put(PASSWORD,account.getPassword());
+
+        // updating row
+        return db.update(TABLE_ACCOUNT, values, KEY_ID + " = ?",
+                new String[] { String.valueOf(account.getId()) });
+    }
+
+    /*
+     * Deleting a account
+     */
+    public void deleteAccount(long acc_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_ACCOUNT, KEY_ID + " = ?",
+                new String[] { String.valueOf(acc_id) });
+    }
 
     /**
      * get datetime

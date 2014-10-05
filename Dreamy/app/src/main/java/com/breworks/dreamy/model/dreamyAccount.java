@@ -5,50 +5,64 @@ package com.breworks.dreamy.model;
  */
 
 public class dreamyAccount {
-    //private variable
-    String _accountName;
-    String _email;
-    String _password;
 
-    //empty constructor
-    public dreamyAccount(){
+        int id;
+        String email;
+        String userID;
+        String password;
+        String created_at;
 
+        // constructors
+        public dreamyAccount() {
+        }
+
+        public dreamyAccount(String email, String userID ,String password) {
+            this.email = email;
+            this.password = password;
+            this.userID = userID;
+        }
+
+        public dreamyAccount(int id, String email, String userID ,String password) {
+            this.id = id;
+            this.email = email;
+            this.password = password;
+            this.userID = userID;
+        }
+
+        // setters
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        public void setUserID(String userID){
+            this.userID = userID;
+        }
+
+        public void setCreatedAt(String created_at){
+        this.created_at = created_at;
     }
 
-    //constructor
-    public dreamyAccount(String accountName, String email, String password){
-        this._accountName = accountName;
-        this._email = email;
-        this._password = password;
+        // getters
+        public long getId() {
+            return this.id;
+        }
+
+        public String getEmail() {
+            return this.email;
+        }
+
+        public String getPassword() {
+        return this.password;
     }
 
-    //getting accountName
-    public String getAccount(){
-        return this._accountName;
+        public String getUserID() { return this.userID; }
     }
 
-    //setting accountName
-    public void setAccount(String accountName){
-        this._accountName = accountName;
-    }
-
-    //getting email
-    public String getEmail(){
-        return this._email;
-    }
-
-    //setting email
-    public void setEmail(String email){
-        this._email = email;
-    }
-
-    //getting password
-    public String getPassword(){
-        return this._password;
-    }
-
-    //setting password
-    public void setPassword(String password){
-        this._password = password;
-    }
-}
