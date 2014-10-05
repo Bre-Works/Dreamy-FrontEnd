@@ -43,6 +43,7 @@
         android:id="@+id/adddreamButton"
         android:layout_toEndOf="@+id/textAdd"
         android:background="@drawable/adddream"
+        android:onClick="gotoDreamyForm"
         android:layout_below="@+id/textAdd"
         android:layout_toRightOf="@+id/textAdd"
         android:layout_marginTop="41dp" />

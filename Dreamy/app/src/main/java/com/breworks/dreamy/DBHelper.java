@@ -319,7 +319,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // assigning tags to to do
         for (long milestone_ids : milestone_id) {
-            createTodoTag(dream_id, milestone_id);
+            //createTodoTag(dream_id, milestone_id);
         }
 
         return dream_id;
