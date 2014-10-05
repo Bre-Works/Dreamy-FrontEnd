@@ -24,4 +24,9 @@ public class logIn extends Activity {
         startActivity(intent);
     }
 
+    public void goToSignUp(View vi){
+        Intent intent = new Intent(this, signUp.class);
+        startActivity(intent);
+    }
+
 }

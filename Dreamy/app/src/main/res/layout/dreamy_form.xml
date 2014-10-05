@@ -11,6 +11,11 @@
     tools:context=".DreamyHome"
     android:id="@+id/abc">
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView2" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,5 +70,17 @@
         android:layout_alignRight="@+id/milestoneInput"
         android:layout_alignEnd="@+id/milestoneInput"
         android:layout_toRightOf="@+id/dreamInput" />
+
+    <TextView
+        android:text="Let's Dream"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#1057CA"
+        android:textSize="30dp"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:layout_toStartOf="@+id/saveDream"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
