@@ -65,7 +65,15 @@ public class Main extends Activity {
                 Dc.setText(dr.getName() + " - COMPLETED");
             }
             Dc.setGravity(Gravity.CENTER);
-            Dc.setTextAppearance(this,android.R.style.TextAppearance_Medium);
+            Dc.isClickable();
+            Dc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Main.this, DreamyForm.class);
+                    startActivity(intent);
+                }
+            });
+            Dc.setTextAppearance(this, android.R.style.TextAppearance_Medium);
             linearView.addView(Dc);
 
             Log.d("Name: ", log);
@@ -103,7 +111,7 @@ public class Main extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void gotoDreamyForm(View v){
+    public void gotoDreamyForm(){
         Intent intent = new Intent(this, DreamyForm.class);
         startActivity(intent);
     }
