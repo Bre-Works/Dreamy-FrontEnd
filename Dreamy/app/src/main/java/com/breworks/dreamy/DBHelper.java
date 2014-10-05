@@ -375,7 +375,7 @@ public class DBHelper extends SQLiteOpenHelper {
      * */
     public List<Dream> getAllDreams() {
         List<Dream> dreams = new ArrayList<Dream>();
-        String selectQuery = "SELECT  * FROM " + TABLE_DREAM;
+        String selectQuery = "SELECT * FROM " + TABLE_DREAM;
 
         Log.e(LOG, selectQuery);
 
@@ -388,6 +388,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 Dream dr = new Dream();
                 dr.setId(c.getInt((c.getColumnIndex(KEY_ID))));
                 dr.setName((c.getString(c.getColumnIndex(DREAM_NAME))));
+                dr.setStatus((c.getInt(c.getColumnIndex(DREAM_STATUS))));
                 dr.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
 
                 // adding to dreams list
@@ -452,6 +453,14 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_DREAM, KEY_ID + " = ?",
                 new String[] { String.valueOf(dream_id) });
+    }
+
+    /*
+     * Deleting all dreams
+     */
+    public void deleteAllDreams() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_DREAM,null,null);
     }
 
 // ------------------------ "accounts" table methods ----------------//

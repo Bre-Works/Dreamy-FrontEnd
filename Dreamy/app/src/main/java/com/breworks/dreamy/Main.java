@@ -37,11 +37,15 @@ public class Main extends Activity {
 
         DBHelper dbh = new DBHelper(this);
         // Inserting Contacts
-        if(dbh.getAllDreams() == null) {
+
             Log.d("Insert: ", "Inserting ..");
-            dbh.createDream(new Dream(1, "Conquer The World", 0));
-            dbh.createDream(new Dream(2, "Make a Homunculus", 0));
-        }
+            dbh.deleteAllDreams();
+            Dream da = new Dream("Around the World",1);
+            dbh.createDream(new Dream("Conquer The World", 0));
+            dbh.createDream(new Dream("Make a Homunculus", 0));
+            dbh.createDream(new Dream("IT PRO gets A",1));
+            dbh.createDream(new Dream("Accepted at UI",1));
+            dbh.createDream(da);
 
         // Reading all contacts
 
@@ -54,7 +58,12 @@ public class Main extends Activity {
             String log = "Id: " + dr.getId() + " ,Name: " + dr.getName() + " ,Status: " + dr.getStatus();
             // Writing Contacts to log
             TextView Dc = new TextView(this);
-            Dc.setText(dr.getName());
+            if(dr.getStatus() == 0) {
+                Dc.setText(dr.getName() + " - ONGOING " );
+            }
+            else{
+                Dc.setText(dr.getName() + " - COMPLETED");
+            }
             Dc.setGravity(Gravity.CENTER);
             Dc.setTextAppearance(this,android.R.style.TextAppearance_Medium);
             linearView.addView(Dc);
