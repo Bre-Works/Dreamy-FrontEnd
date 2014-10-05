@@ -38,13 +38,13 @@
         android:layout_marginTop="70dp"
         android:layout_below="@+id/dreamInput"
         android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/scrollView"
-        android:layout_alignEnd="@+id/scrollView" />
+        android:layout_alignRight="@+id/scrolled"
+        android:layout_alignEnd="@+id/scrolled" />
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
+        android:id="@+id/scrolled"
         android:layout_below="@+id/milestoneInput"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true">

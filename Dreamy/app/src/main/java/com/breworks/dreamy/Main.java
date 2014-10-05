@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,6 +55,8 @@ public class Main extends Activity {
             // Writing Contacts to log
             TextView Dc = new TextView(this);
             Dc.setText(dr.getName());
+            Dc.setGravity(Gravity.CENTER);
+            Dc.setTextAppearance(this,android.R.style.TextAppearance_Medium);
             linearView.addView(Dc);
 
             Log.d("Name: ", log);
