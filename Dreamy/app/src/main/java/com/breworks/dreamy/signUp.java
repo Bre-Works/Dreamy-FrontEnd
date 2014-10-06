@@ -46,8 +46,9 @@ public class signUp extends Activity{
             return;
         }
 
-        DBHelper dbh = new DBHelper(this);
+
         dreamyAccount account = new dreamyAccount(email, username, password);
+        DBHelper dbh = new DBHelper(this);
         dbh.createAccounts(account);
 
     }

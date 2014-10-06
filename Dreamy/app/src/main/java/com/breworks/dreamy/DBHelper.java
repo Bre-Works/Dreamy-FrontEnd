@@ -10,6 +10,7 @@ import android.util.Log;
 import com.breworks.dreamy.model.Dream;
 import com.breworks.dreamy.model.Todo;
 import com.breworks.dreamy.model.dreamyAccount;
+import com.breworks.dreamy.model.milestone;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -462,6 +463,136 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_DREAM,null,null);
     }
+
+// ------------------------ "Milestones" table methods ----------------//
+
+    /*
+     * Creating a milestone
+     */
+    public long createMilestone(milestone miles) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(MILESTONE_NAME, miles.getName());
+        values.put(MILESTONE_STATUS, miles.getStatus());
+        values.put(CREATED_AT, getDateTime());
+
+        // insert row
+        long dream_id = db.insert(TABLE_DREAM, null, values);
+
+        // assigning tags to to do
+       /* for (long milestone_ids : milestone_id) {
+            createDreamMilestone(dream_id, milestone_ids);
+        }
+        */
+        return dream_id;
+    }
+
+    // Fetching single Dream
+    // With ID
+    public milestone getMilestonewithID(long miles_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_MILESTONE + " WHERE "
+                + KEY_ID + " = " + miles_id;
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        milestone ms = new milestone();
+        ms.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+        ms.setName((c.getString(c.getColumnIndex(MILESTONE_NAME))));
+        ms.setStatus((c.getInt(c.getColumnIndex(MILESTONE_STATUS))));
+        ms.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
+
+        return ms;
+    }
+
+    // With Name
+    public milestone getMilestonewithName(String miles_name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_MILESTONE + " WHERE "
+                + MILESTONE_NAME + " = " + miles_name;
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        milestone ms = new milestone();
+        ms.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+        ms.setName((c.getString(c.getColumnIndex(MILESTONE_NAME))));
+        ms.setStatus((c.getInt(c.getColumnIndex(MILESTONE_STATUS))));
+        ms.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
+
+        return ms;
+    }
+
+    /*
+     * getting all milestones under single dreams
+     * */
+
+     public List<milestone> getAllMilestonesByDreams(String dream_name) {
+        List<milestone> miles = new ArrayList<milestone>();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_MILESTONE + " ms, "
+                + TABLE_DREAM + " dr, " + TABLE_DREAM_MILESTONE + " dm WHERE dr."
+                + DREAM_NAME + " = '" + dream_name + "'" + " AND dr." + KEY_ID
+                + " = " + "dm." + DREAM_ID_2 + " AND ms." + MILESTONE_ID + " = "
+                + "dm." + MILESTONE_ID;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                milestone ms = new milestone();
+                ms.setId(c.getInt((c.getColumnIndex(KEY_ID))));
+                ms.setName((c.getString(c.getColumnIndex(MILESTONE_NAME))));
+                ms.setStatus((c.getInt(c.getColumnIndex(MILESTONE_STATUS))));
+                ms.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
+
+                // adding to dreams
+                miles.add(ms);
+            } while (c.moveToNext());
+        }
+        return miles;
+    }
+
+    /*
+     * Updating a milestone
+     */
+    public int updateMilestone(milestone miles) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(MILESTONE_NAME, miles.getName());
+        values.put(MILESTONE_STATUS, miles.getStatus());
+
+        // updating row
+        return db.update(TABLE_MILESTONE, values, KEY_ID + " = ?",
+                new String[] { String.valueOf(miles.getId()) });
+    }
+
+    /*
+     * Deleting a milestone
+     */
+    public void deleteMilestone(long miles_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_MILESTONE, KEY_ID + " = ?",
+                new String[] { String.valueOf(miles_id) });
+    }
+
 
 // ------------------------ "accounts" table methods ----------------//
 
