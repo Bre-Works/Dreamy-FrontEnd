@@ -32,8 +32,9 @@ public class DreamyForm extends Activity{
         dreamInput = (EditText) findViewById(R.id.dreamInput);
 
         DBHelper dbh = new DBHelper(this);
-        Intent intent = getIntent();
-        if(intent.getStringExtra("key")!= null) {
+        Intent intent;
+        if(getIntent() != null) {
+            intent = getIntent();
             dreamInput.setText(intent.getStringExtra("key"));
         }
 
