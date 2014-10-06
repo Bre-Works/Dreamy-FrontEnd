@@ -75,8 +75,7 @@ public class DreamyForm extends Activity{
     }
 
     public void saveBackToHome(View v){
-        Intent intent = new Intent(this, Main.class);
-        startActivity(intent);
+        finish();
     }
 
 

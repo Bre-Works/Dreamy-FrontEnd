@@ -53,6 +53,7 @@ public class logIn extends Activity {
     public void goToMain(View vi){
         Intent intent = new Intent(this, Main.class);
         startActivity(intent);
+        finish();
     }
 
     public void goToSignUp(View vi){
