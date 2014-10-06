@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.breworks.dreamy.model.dreamyAccount;
 
+
 public class signUp extends Activity{
     Button createAccount;
     EditText usernameInput, emailInput, passwordInput, passwordConfInput;
@@ -45,6 +46,7 @@ public class signUp extends Activity{
         }
 
         dreamyAccount account = new dreamyAccount(email, username, password);
-        DBHelper.createAccounts(account);
+        //DBHelper.createAccounts(account);
+
     }
 }

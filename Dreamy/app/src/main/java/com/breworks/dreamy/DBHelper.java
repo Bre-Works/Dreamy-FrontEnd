@@ -468,7 +468,8 @@ public class DBHelper extends SQLiteOpenHelper {
     /*
      * Creating an Accounts
      */
-    public static long createAccounts(dreamyAccount acc) {
+    public long createAccounts(dreamyAccount acc) {
+
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
