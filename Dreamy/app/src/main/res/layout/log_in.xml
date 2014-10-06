@@ -33,7 +33,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editText"
+            android:id="@+id/usernameInput"
             android:layout_column="2"
             android:hint="username"
             android:layout_marginTop="75dp"
@@ -47,28 +47,25 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editText2"
+            android:id="@+id/passwordInput"
             android:layout_column="2"
             android:hint="password"
             android:textSize="30dp"
-            android:layout_centerVertical="true"
-            android:layout_alignLeft="@+id/editText"
-            android:layout_alignStart="@+id/editText"
-            android:layout_alignRight="@+id/editText"
-            android:layout_alignEnd="@+id/editText"
             android:inputType="textPassword"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/usernameInput"
+            android:layout_alignStart="@+id/usernameInput" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
             android:id="@+id/signin"
-            android:onClick="goToMain"
-            android:layout_marginTop="70dp"
-            android:layout_below="@+id/editText2"
-            android:layout_alignLeft="@+id/editText2"
-            android:layout_alignStart="@+id/editText2" />
+            android:onClick="loginAccount"
+            android:layout_alignTop="@+id/signup"
+            android:layout_alignLeft="@+id/passwordInput"
+            android:layout_alignStart="@+id/passwordInput" />
 
         <Button
             android:layout_width="wrap_content"
@@ -76,10 +73,11 @@
             android:text="Sign Up"
             android:id="@+id/signup"
             android:onClick="goToSignUp"
-            android:layout_alignBottom="@+id/signin"
 
-            android:layout_alignRight="@+id/editText2"
-            android:layout_alignEnd="@+id/editText2" />
+            android:layout_below="@+id/passwordInput"
+            android:layout_alignRight="@+id/usernameInput"
+            android:layout_alignEnd="@+id/usernameInput"
+            android:layout_marginTop="57dp" />
 
     </RelativeLayout>
 

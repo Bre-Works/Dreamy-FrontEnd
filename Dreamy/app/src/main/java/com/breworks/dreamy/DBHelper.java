@@ -510,7 +510,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // With Name
-    public dreamyAccount getAccountwithID(String acc_name) {
+    public dreamyAccount getAccountwithUsername(String acc_name) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String selectQuery = "SELECT  * FROM " + TABLE_ACCOUNT + " WHERE "
