@@ -5,12 +5,8 @@ package com.breworks.dreamy;
  */
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -35,10 +31,10 @@ public class signUp extends Activity{
 
 
     public void createAccount(View v){
-        username = usernameInput.toString();
-        email = emailInput.toString();
-        password = passwordInput.toString();
-        passwordConf = passwordConfInput.toString();
+        username = usernameInput.getText().toString();
+        email = emailInput.getText().toString();
+        password = passwordInput.getText().toString();
+        passwordConf = passwordConfInput.getText().toString();
 
         if(!password.equals(passwordConf))
             Toast.makeText(getApplicationContext(), "Password and password confirmation did not match!", Toast.LENGTH_SHORT).show();

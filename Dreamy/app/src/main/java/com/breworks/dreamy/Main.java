@@ -17,6 +17,7 @@ import com.breworks.dreamy.tabpanel.MyTabHostProvider;
 import com.breworks.dreamy.tabpanel.TabHostProvider;
 import com.breworks.dreamy.tabpanel.TabView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,22 +38,24 @@ public class Main extends Activity {
         linearView = (LinearLayout) findViewById(R.id.linearView);
 
         DBHelper dbh = new DBHelper(this);
-        // Inserting Contacts
 
+        // Inserting Contacts
             Log.d("Insert: ", "Inserting ..");
             dbh.deleteAllDreams();
             Dream da = new Dream("Around the World",1);
+
+            List<milestone> miles = new ArrayList<milestone>();
+            miles.add(new milestone("Finish Database",1));
+            miles.add(new milestone("Finish UserInterface",1));
+            miles.add(new milestone("Finish BackEnd",1));
+            miles.add(new milestone("Finish FrontEnd",1));
+
             dbh.createDream(new Dream("Conquer The World", 0));
             dbh.createDream(new Dream("Make a Homunculus", 0));
-            dbh.createDream(new Dream("IT PRO gets A",1));
+            dbh.createDream(new Dream("IT PRO gets A",1),miles);
             dbh.createDream(new Dream("Accepted at UI",1));
             dbh.createDream(da);
 
-            dbh.createMilestone(new milestone("Finish Database",1));
-            dbh.createMilestone(new milestone("Finish UserInterface",1));
-            dbh.createMilestone(new milestone("Finish BackEnd",1));
-            dbh.createMilestone(new milestone("Finish FrontEnd",1));
-            
         // Reading all contacts
 
         Log.d("Reading: ", "Reading all contacts..");
@@ -65,7 +68,7 @@ public class Main extends Activity {
             // Writing Contacts to log
             TextView Dc = new TextView(this);
             if(dr.getStatus() == 0) {
-                Dc.setText(dr.getName() + " - ONGOING " );
+                Dc.setText(dr.getName() + " - ONGOING " +dr.getStatus());
             }
             else{
                 Dc.setText(dr.getName() + " - COMPLETED");

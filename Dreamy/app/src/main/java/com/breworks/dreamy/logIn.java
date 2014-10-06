@@ -4,14 +4,10 @@ package com.breworks.dreamy;
  * Created by Luck Eater on 10/2/2014.
  */
 
-import android.accounts.Account;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.EditText;
 
 import com.breworks.dreamy.model.dreamyAccount;
@@ -38,8 +34,8 @@ public class logIn extends Activity {
     }
 
     public void loginAccount (View vi){
-        username = usernameInput.toString();
-        password = passwordInput.toString();
+        username = usernameInput.getText().toString();
+        password = passwordInput.getText().toString();
         DBHelper dbh = new DBHelper(this);
         if(dbh.getAccountwithUsername(username) != null){
             dreamyAccount acc = dbh.getAccountwithUsername(username);

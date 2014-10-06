@@ -318,11 +318,25 @@ public class DBHelper extends SQLiteOpenHelper {
         // insert row
         long dream_id = db.insert(TABLE_DREAM, null, values);
 
+        return dream_id;
+    }
+
+    public long createDream(Dream dream,List<milestone> milestone) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(DREAM_NAME, dream.getName());
+        values.put(DREAM_STATUS, dream.getStatus());
+        values.put(CREATED_AT, getDateTime());
+
+        // insert row
+        long dream_id = db.insert(TABLE_DREAM, null, values);
+
         // assigning tags to to do
-       /* for (long milestone_ids : milestone_id) {
-            createDreamMilestone(dream_id, milestone_ids);
+        for (milestone milestones : milestone) {
+            createDreamMilestone(dream_id, milestones.getId());
         }
-        */
+
         return dream_id;
     }
 

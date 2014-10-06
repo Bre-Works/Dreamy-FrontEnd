@@ -11,6 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import com.breworks.dreamy.model.milestone;
+
+import java.util.List;
+
 /**
  * Created by arsianindita on 28-Sep-14.
  */
@@ -35,7 +39,12 @@ public class DreamyForm extends Activity{
         Intent intent;
         if(getIntent() != null) {
             intent = getIntent();
-            dreamInput.setText(intent.getStringExtra("key"));
+            String dream = intent.getStringExtra("key");
+            dreamInput.setText(dream);
+            List<milestone> miles =  dbh.getAllMilestonesByDreams(dream);
+            for(milestone mil : miles){
+                EditText milestun = new EditText(this);
+            }
         }
 
         milestoneInput.setOnKeyListener(new View.OnKeyListener() {
