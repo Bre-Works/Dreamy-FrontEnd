@@ -25,23 +25,4 @@ public class Notes extends Activity{
         setContentView(tabView.render(2));
     }
 
-    public void gotoTodo(View v){
-        Intent intent = new Intent(this, ToDoList.class);
-        startActivity(intent);
-    }
-
-    public void gotoHome(View v){
-        Intent intent = new Intent(this, Main.class);
-        startActivity(intent);
-    }
-
-    public void gotoNote(View v){
-        Intent intent = new Intent(this, Notes.class);
-        startActivity(intent);
-    }
-
-    public void gotoFreeTime(View v){
-        Intent intent = new Intent(this, FreeTime.class);
-        startActivity(intent);
-    }
 }
