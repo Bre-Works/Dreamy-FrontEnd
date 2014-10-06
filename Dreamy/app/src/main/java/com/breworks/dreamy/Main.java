@@ -113,7 +113,7 @@ public class Main extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void gotoDreamyForm(){
+    public void gotoDreamyForm(View v){
         Intent intent = new Intent(this, DreamyForm.class);
         startActivity(intent);
     }
