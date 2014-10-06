@@ -12,6 +12,10 @@ import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+/**
+ * Created by aidifauzan on 04/10/2014.
+ */
+
 public class TabView {
 	private final List<Tab> tabSet = new ArrayList<Tab>();
 	private int mHeaderHeight;

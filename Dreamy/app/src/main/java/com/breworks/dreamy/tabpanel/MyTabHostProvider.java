@@ -11,6 +11,10 @@ import com.breworks.dreamy.Notes;
 import com.breworks.dreamy.FreeTime;
 import com.breworks.dreamy.R;
 
+/**
+ * Created by aidifauzan on 04/10/2014.
+ */
+
 public class MyTabHostProvider extends TabHostProvider 
 {
 	private Tab homeTab;
@@ -47,8 +51,8 @@ public class MyTabHostProvider extends TabHostProvider
 		homeTab.setIcon(R.drawable.homeidle);
 		homeTab.setIconSelected(R.drawable.homeactive);
         homeTab.setBtnText("Home");
-        homeTab.setBtnTextColor(Color.WHITE);
-        homeTab.setSelectedBtnTextColor(Color.BLACK);
+        homeTab.setBtnTextColor(0x00000000);
+        homeTab.setSelectedBtnTextColor(0x00000000);
 		homeTab.setBtnGradient(transGradientDrawable);
 		homeTab.setSelectedBtnGradient(gradientDrawable);
 		homeTab.setIntent(new Intent(context, Main.class));
@@ -57,8 +61,8 @@ public class MyTabHostProvider extends TabHostProvider
         todoTab.setIcon(R.drawable.todoidle);
         todoTab.setIconSelected(R.drawable.todoactive);
         todoTab.setBtnText("Todo");
-        todoTab.setBtnTextColor(Color.WHITE);
-        todoTab.setSelectedBtnTextColor(Color.BLACK);
+        todoTab.setBtnTextColor(0x00000000);
+        todoTab.setSelectedBtnTextColor(0x00000000);
         todoTab.setBtnGradient(transGradientDrawable);
         todoTab.setSelectedBtnGradient(gradientDrawable);
         todoTab.setIntent(new Intent(context, ToDoList.class));
@@ -67,8 +71,8 @@ public class MyTabHostProvider extends TabHostProvider
         notesTab.setIcon(R.drawable.notesidle);
         notesTab.setIconSelected(R.drawable.notesactive);
         notesTab.setBtnText("Notes");
-        notesTab.setBtnTextColor(Color.WHITE);
-        notesTab.setSelectedBtnTextColor(Color.BLACK);
+        notesTab.setBtnTextColor(0x00000000);
+        notesTab.setSelectedBtnTextColor(0x00000000);
         notesTab.setBtnGradient(transGradientDrawable);
         notesTab.setSelectedBtnGradient(gradientDrawable);
         notesTab.setIntent(new Intent(context, Notes.class));
@@ -77,8 +81,8 @@ public class MyTabHostProvider extends TabHostProvider
         freetimeTab.setIcon(R.drawable.freetimeidle);
         freetimeTab.setIconSelected(R.drawable.freetimeactive);
         freetimeTab.setBtnText("FreeTime");
-        freetimeTab.setBtnTextColor(Color.WHITE);
-        freetimeTab.setSelectedBtnTextColor(Color.BLACK);
+        freetimeTab.setBtnTextColor(0x00000000);
+        freetimeTab.setSelectedBtnTextColor(0x00000000);
         freetimeTab.setBtnGradient(transGradientDrawable);
         freetimeTab.setSelectedBtnGradient(gradientDrawable);
         freetimeTab.setIntent(new Intent(context, FreeTime.class));

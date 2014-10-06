@@ -13,6 +13,10 @@ import android.widget.Toast;
 
 import com.breworks.dreamy.R;
 
+/**
+ * Created by aidifauzan on 04/10/2014.
+ */
+
 public class Tab {
 	private int resourceIcon;
 	private int resourceIconSelected = 0;
