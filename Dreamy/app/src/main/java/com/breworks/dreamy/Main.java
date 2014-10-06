@@ -47,6 +47,8 @@ public class Main extends Activity {
             dbh.createDream(new Dream("Accepted at UI",1));
             dbh.createDream(da);
 
+
+
         // Reading all contacts
 
         Log.d("Reading: ", "Reading all contacts..");
