@@ -40,8 +40,9 @@ public class signUp extends Activity{
         password = passwordInput.toString();
         passwordConf = passwordConfInput.toString();
 
-        if(!password.equals(passwordConf)){
+        if(!password.equals(passwordConf))
             Toast.makeText(getApplicationContext(), "Password and password confirmation did not match!", Toast.LENGTH_SHORT).show();
+        else {
             return;
         }
 

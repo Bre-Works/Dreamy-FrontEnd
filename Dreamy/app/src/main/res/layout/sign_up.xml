@@ -29,12 +29,11 @@
             android:layout_height="wrap_content"
             android:text="sign up"
             android:id="@+id/createAccount"
-            android:layout_marginRight="68dp"
             android:onClick="createAccount"
-            android:layout_marginTop="47dp"
-            android:layout_below="@+id/password"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_below="@+id/passwordConf"
+            android:layout_alignRight="@+id/textView3"
+            android:layout_alignEnd="@+id/textView3"
+            android:layout_marginTop="40dp" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -90,7 +89,9 @@
             android:id="@+id/passwordConf"
             android:layout_below="@+id/password"
             android:layout_alignLeft="@+id/password"
-            android:layout_alignStart="@+id/password" />
+            android:layout_alignStart="@+id/password"
+            android:layout_alignRight="@+id/password"
+            android:layout_alignEnd="@+id/password" />
 
 
     </RelativeLayout>
