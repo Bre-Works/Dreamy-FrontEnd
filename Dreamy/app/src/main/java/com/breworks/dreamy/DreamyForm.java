@@ -41,9 +41,29 @@ public class DreamyForm extends Activity{
             intent = getIntent();
             String dream = intent.getStringExtra("key");
             dreamInput.setText(dream);
-            List<milestone> miles =  dbh.getAllMilestonesByDreams(dream);
-            for(milestone mil : miles){
-                EditText milestun = new EditText(this);
+            if(dbh.getAllMilestonesByDreams(dream) != null) {
+                List<milestone> miles = dbh.getAllMilestonesByDreams(dream);
+                for (final milestone mil : miles) {
+                    LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService
+                            (Context.LAYOUT_INFLATER_SERVICE);
+                    final View addView = inflater.inflate(R.layout.dreamy_form_row, null);
+
+                    removeMilestone = (ImageButton) addView.findViewById(R.id.delMilestone);
+
+                    EditText milestoneOut = (EditText) addView.findViewById(R.id.milestoneOut);
+
+                    milestoneOut.setText(mil.getName());
+
+                    removeMilestone.setOnClickListener(new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View v1) {
+                            ((LinearLayout) addView.getParent()).removeView(addView);
+                        }
+                    });
+
+                    container.addView(addView);
+                }
             }
         }
 

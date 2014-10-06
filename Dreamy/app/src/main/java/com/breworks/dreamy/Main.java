@@ -68,7 +68,7 @@ public class Main extends Activity {
             // Writing Contacts to log
             TextView Dc = new TextView(this);
             if(dr.getStatus() == 0) {
-                Dc.setText(dr.getName() + " - ONGOING " +dr.getStatus());
+                Dc.setText(dr.getName() + " - ONGOING " );
             }
             else{
                 Dc.setText(dr.getName() + " - COMPLETED");

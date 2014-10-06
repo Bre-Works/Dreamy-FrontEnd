@@ -559,7 +559,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_MILESTONE + " ms, "
                 + TABLE_DREAM + " dr, " + TABLE_DREAM_MILESTONE + " dm WHERE dr."
                 + DREAM_NAME + " = '" + dream_name + "'" + " AND dr." + KEY_ID
-                + " = " + "dm." + DREAM_ID_2 + " AND ms." + MILESTONE_ID + " = "
+                + " = " + "dm." + DREAM_ID_2 + " AND ms." + KEY_ID + " = "
                 + "dm." + MILESTONE_ID;
 
         Log.e(LOG, selectQuery);

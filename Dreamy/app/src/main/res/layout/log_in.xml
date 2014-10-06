@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:text="Login"
             android:id="@+id/signin"
-            android:onClick="loginAccount"
+            android:onClick="goToMain"
             android:layout_alignTop="@+id/signup"
             android:layout_alignLeft="@+id/passwordInput"
             android:layout_alignStart="@+id/passwordInput" />
