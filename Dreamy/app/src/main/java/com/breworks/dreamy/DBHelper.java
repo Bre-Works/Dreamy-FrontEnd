@@ -763,5 +763,4 @@ public class DBHelper extends SQLiteOpenHelper {
         return dateFormat.format(date);
     }
 
-
 }

@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.breworks.dreamy.model.Dream;
+import com.breworks.dreamy.model.milestone;
 import com.breworks.dreamy.tabpanel.MyTabHostProvider;
 import com.breworks.dreamy.tabpanel.TabHostProvider;
 import com.breworks.dreamy.tabpanel.TabView;
@@ -47,8 +48,11 @@ public class Main extends Activity {
             dbh.createDream(new Dream("Accepted at UI",1));
             dbh.createDream(da);
 
-
-
+            dbh.createMilestone(new milestone("Finish Database",1));
+            dbh.createMilestone(new milestone("Finish UserInterface",1));
+            dbh.createMilestone(new milestone("Finish BackEnd",1));
+            dbh.createMilestone(new milestone("Finish FrontEnd",1));
+            
         // Reading all contacts
 
         Log.d("Reading: ", "Reading all contacts..");
