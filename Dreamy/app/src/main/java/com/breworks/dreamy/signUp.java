@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.breworks.dreamy.model.dreamyAccount;
+
 public class signUp extends Activity{
     Button createAccount;
     EditText usernameInput, emailInput, passwordInput, passwordConfInput;
@@ -27,7 +29,7 @@ public class signUp extends Activity{
         emailInput = (EditText) findViewById(R.id.email);
         passwordInput = (EditText) findViewById(R.id.password);
         passwordConfInput = (EditText) findViewById(R.id.passwordConf);
-        createAccount = (Button) findViewById(R.id.createAccount);
+        //createAccount = (Button) findViewById(R.id.createAccount);
     }
 
 
@@ -41,5 +43,8 @@ public class signUp extends Activity{
             Toast.makeText(getApplicationContext(), "Password and password confirmation did not match!", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        dreamyAccount account = new dreamyAccount(email, username, password);
+        DBHelper.createAccounts(account);
     }
 }

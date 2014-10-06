@@ -468,7 +468,7 @@ public class DBHelper extends SQLiteOpenHelper {
     /*
      * Creating an Accounts
      */
-    public long createAccounts(dreamyAccount acc) {
+    public static long createAccounts(dreamyAccount acc) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -630,4 +630,6 @@ public class DBHelper extends SQLiteOpenHelper {
         Date date = new Date();
         return dateFormat.format(date);
     }
+
+
 }
