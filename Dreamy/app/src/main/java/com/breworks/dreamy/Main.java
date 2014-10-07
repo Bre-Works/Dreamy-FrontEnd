@@ -41,18 +41,29 @@ public class Main extends Activity {
 
         // Inserting Contacts
             Log.d("Insert: ", "Inserting ..");
-            dbh.deleteAllDreams();
+            dbh.restartTable();
+
             Dream da = new Dream("Around the World",1);
 
-            List<milestone> miles = new ArrayList<milestone>();
-            miles.add(new milestone("Finish Database",1));
-            miles.add(new milestone("Finish UserInterface",1));
-            miles.add(new milestone("Finish BackEnd",1));
-            miles.add(new milestone("Finish FrontEnd",1));
+            milestone a = new milestone("Finish Database",1);
+            milestone b = new milestone("Finish UI",1);
+            milestone c = new milestone("Finish BackEnd",1);
+            milestone d = new milestone("Finish FrontEnd",1);
 
-            dbh.createDream(new Dream("Conquer The World", 0));
+            List<milestone> miles = new ArrayList<milestone>();
+            miles.add(a);
+            miles.add(b);
+            miles.add(c);
+            miles.add(d);
+
+            dbh.createMilestone(a);
+            dbh.createMilestone(b);
+            dbh.createMilestone(c);
+            dbh.createMilestone(d);
+
+            dbh.createDream(new Dream("Conquer The World", 0),miles);
             dbh.createDream(new Dream("Make a Homunculus", 0));
-            dbh.createDream(new Dream("IT PRO gets A",1),miles);
+            dbh.createDream(new Dream("IT PRO gets A",1));
             dbh.createDream(new Dream("Accepted at UI",1));
             dbh.createDream(da);
 
@@ -79,7 +90,7 @@ public class Main extends Activity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(Main.this, DreamyForm.class);
-                    intent.putExtra("key",dr.getName());
+                    intent.putExtra("key",dr.getId());
                     startActivity(intent);
                 }
             });

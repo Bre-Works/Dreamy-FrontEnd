@@ -336,7 +336,6 @@ public class DBHelper extends SQLiteOpenHelper {
         for (milestone milestones : milestone) {
             createDreamMilestone(dream_id, milestones.getId());
         }
-
         return dream_id;
     }
 
@@ -492,14 +491,14 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(CREATED_AT, getDateTime());
 
         // insert row
-        long dream_id = db.insert(TABLE_DREAM, null, values);
+        long miles_id = db.insert(TABLE_MILESTONE, null, values);
 
         // assigning tags to to do
        /* for (long milestone_ids : milestone_id) {
             createDreamMilestone(dream_id, milestone_ids);
         }
         */
-        return dream_id;
+        return miles_id;
     }
 
     // Fetching single Dream
@@ -553,14 +552,39 @@ public class DBHelper extends SQLiteOpenHelper {
      * getting all milestones under single dreams
      * */
 
-     public List<milestone> getAllMilestonesByDreams(String dream_name) {
+     public List<milestone> getAllMilestonesByDreams(long dream_ID) {
         List<milestone> miles = new ArrayList<milestone>();
 
-        String selectQuery = "SELECT  * FROM " + TABLE_MILESTONE + " ms, "
-                + TABLE_DREAM + " dr, " + TABLE_DREAM_MILESTONE + " dm WHERE dr."
-                + DREAM_NAME + " = '" + dream_name + "'" + " AND dr." + KEY_ID
-                + " = " + "dm." + DREAM_ID_2 + " AND ms." + KEY_ID + " = "
-                + "dm." + MILESTONE_ID;
+        String selectQuery = "SELECT  * FROM " + TABLE_DREAM_MILESTONE
+                + " WHERE " + DREAM_ID_2 + " = "+ dream_ID;
+
+        Log.d(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+         if (c == null)
+             Log.e("Nothing", "Nothing at all");
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                milestone mil = getMilestonewithID(1);
+                Log.e("lol", String.valueOf(c.getLong(c.getColumnIndex(KEY_ID))));
+                Log.e("lol", String.valueOf(c.getLong(c.getColumnIndex(MILESTONE_ID))));
+                Log.e("lol", String.valueOf(c.getLong(c.getColumnIndex(DREAM_ID_2))));
+                // adding to dreams
+                miles.add(mil);
+            } while (c.moveToNext());
+        }
+        return miles;
+    }
+
+    /*
+   * getting all accounts
+   * */
+    public List<milestone> getAllMilestone() {
+        List<milestone> miles = new ArrayList<milestone>();
+        String selectQuery = "SELECT  * FROM " + TABLE_MILESTONE;
 
         Log.e(LOG, selectQuery);
 
@@ -576,10 +600,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 ms.setStatus((c.getInt(c.getColumnIndex(MILESTONE_STATUS))));
                 ms.setCreatedAt(c.getString(c.getColumnIndex(CREATED_AT)));
 
-                // adding to dreams
+                // adding to dreams list
                 miles.add(ms);
             } while (c.moveToNext());
         }
+
         return miles;
     }
 
@@ -605,6 +630,15 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_MILESTONE, KEY_ID + " = ?",
                 new String[] { String.valueOf(miles_id) });
+    }
+
+
+    /*
+     * Deleting all dreams
+     */
+    public void deleteAllMilestones() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_MILESTONE,null,null);
     }
 
 
@@ -776,5 +810,17 @@ public class DBHelper extends SQLiteOpenHelper {
         Date date = new Date();
         return dateFormat.format(date);
     }
-
+    /*
+         * Restart Table
+         */
+    public void restartTable() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_MILESTONE,null,null);
+        db.delete(TABLE_DREAM_MILESTONE,null,null);
+        db.delete(TABLE_DREAM,null,null);
+        db.delete(TABLE_ACCOUNT,null,null);
+        db.delete(TABLE_ACCOUNT_DREAM,null,null);
+        db.delete(TABLE_TODO,null,null);
+        db.delete(TABLE_MILESTONE_TODO,null,null);
+    }
 }
