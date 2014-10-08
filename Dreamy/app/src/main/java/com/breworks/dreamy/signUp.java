@@ -5,6 +5,7 @@ package com.breworks.dreamy;
  */
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,16 +37,16 @@ public class signUp extends Activity{
         password = passwordInput.getText().toString();
         passwordConf = passwordConfInput.getText().toString();
 
+        DBHelper dbh = new DBHelper(this);
+
         if(!password.equals(passwordConf))
             Toast.makeText(getApplicationContext(), "Password and password confirmation did not match!", Toast.LENGTH_SHORT).show();
         else {
-            return;
+            dreamyAccount account = new dreamyAccount(email, username, password);
+            dbh.createAccounts(account);
+            Toast.makeText(getApplicationContext(), "Your account is now ready. Please login.", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, logIn.class);
+            startActivity(intent);
         }
-
-
-        dreamyAccount account = new dreamyAccount(email, username, password);
-        DBHelper dbh = new DBHelper(this);
-        dbh.createAccounts(account);
-
     }
 }
