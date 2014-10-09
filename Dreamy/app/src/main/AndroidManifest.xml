@@ -7,6 +7,12 @@
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
+
+        <meta-data android:name="DATABASE" android:value="dreamyDB.db" />
+        <meta-data android:name="VERSION" android:value="1" />
+        <meta-data android:name="QUERY_LOG" android:value="true" />
+        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.breworks.dreamy"/>
+
         <activity
             android:name=".Splash"
             android:label="@string/app_name" >

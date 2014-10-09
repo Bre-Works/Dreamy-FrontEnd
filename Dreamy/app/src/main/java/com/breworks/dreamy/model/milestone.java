@@ -1,58 +1,32 @@
 package com.breworks.dreamy.model;
 
+import com.orm.SugarRecord;
+
+import java.util.List;
+
 /**
  * Created by Ryan on 05/10/2014.
  */
-public class milestone {
+public class Milestone extends SugarRecord<Milestone> {
 
-    int id;
     String name;
     int status;
-    String created_at;
+    List<Integer> todo_id;
 
     // constructors
-    public milestone() {
+    public Milestone() {
     }
 
-    public milestone(String name, int status) {
+    public Milestone(String name, int status) {
         this.name = name;
         this.status = status;
     }
 
-    public milestone(int id, String name, int status) {
-        this.id = id;
+    public Milestone(String name, int status,List<Integer> todo_id) {
         this.name = name;
         this.status = status;
+        this.todo_id = todo_id;
     }
 
-    // setters
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public void setCreatedAt(String created_at){
-        this.created_at = created_at;
-    }
-
-    // getters
-    public long getId() {
-        return this.id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public int getStatus() {
-        return this.status;
-    }
 }
 

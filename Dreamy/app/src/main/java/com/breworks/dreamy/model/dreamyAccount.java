@@ -1,68 +1,37 @@
 package com.breworks.dreamy.model;
 
+import com.orm.SugarRecord;
+
+import java.util.List;
+
 /**
  * Created by Luck Eater on 10/4/2014.
  */
 
-public class dreamyAccount {
+public class dreamyAccount extends SugarRecord<dreamyAccount> {
 
-        int id;
         String email;
-        String userID;
+        String username;
         String password;
-        String created_at;
+        List<Integer> dream_id;
 
         // constructors
         public dreamyAccount() {
         }
 
-        public dreamyAccount(String email, String userID ,String password) {
+        public dreamyAccount(String email, String username ,String password) {
             this.email = email;
             this.password = password;
-            this.userID = userID;
+            this.username = username;
         }
 
-        public dreamyAccount(int id, String email, String userID ,String password) {
-            this.id = id;
+        public dreamyAccount(String email, String username ,String password, List<Integer> dream_id) {
             this.email = email;
             this.password = password;
-            this.userID = userID;
+            this.username = username;
+            this.dream_id = dream_id;
         }
 
-        // setters
-        public void setId(int id) {
-            this.id = id;
-        }
 
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        public void setUserID(String userID){
-            this.userID = userID;
-        }
-
-        public void setCreatedAt(String created_at){
-        this.created_at = created_at;
-    }
-
-        // getters
-        public long getId() {
-            return this.id;
-        }
-
-        public String getEmail() {
-            return this.email;
-        }
-
-        public String getPassword() {
-        return this.password;
-    }
-
-        public String getUserID() { return this.userID; }
     }
 

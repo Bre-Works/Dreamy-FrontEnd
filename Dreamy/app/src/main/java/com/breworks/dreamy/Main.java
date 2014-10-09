@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.breworks.dreamy.model.Dream;
-import com.breworks.dreamy.model.milestone;
+import com.breworks.dreamy.model.Milestone;
 import com.breworks.dreamy.tabpanel.MyTabHostProvider;
 import com.breworks.dreamy.tabpanel.TabHostProvider;
 import com.breworks.dreamy.tabpanel.TabView;
@@ -37,31 +37,25 @@ public class Main extends Activity {
         setContentView(tabView.render(0));
         linearView = (LinearLayout) findViewById(R.id.linearView);
 
-        DBHelper dbh = new DBHelper(this);
-
         // Inserting Contacts
             Log.d("Insert: ", "Inserting ..");
-            dbh.restartTable();
 
             Dream da = new Dream("Around the World",1);
 
-            milestone a = new milestone("Finish Database",1);
-            milestone b = new milestone("Finish UI",1);
-            milestone c = new milestone("Finish BackEnd",1);
-            milestone d = new milestone("Finish FrontEnd",1);
+            Milestone a = new Milestone("Finish Database",1);
+            Milestone b = new Milestone("Finish UI",1);
+            Milestone c = new Milestone("Finish BackEnd",1);
+            Milestone d = new Milestone("Finish FrontEnd",1);
 
-            List<milestone> miles = new ArrayList<milestone>();
+            a.save(); b.save(); c.save(); d.save();
+
+            List<Milestone> miles = new ArrayList<Milestone>();
             miles.add(a);
             miles.add(b);
             miles.add(c);
             miles.add(d);
 
-            dbh.createMilestone(a);
-            dbh.createMilestone(b);
-            dbh.createMilestone(c);
-            dbh.createMilestone(d);
-
-            dbh.createDream(new Dream("Conquer The World", 0),miles);
+            Dream new Dream("Conquer The World", 0),miles);
             dbh.createDream(new Dream("Make a Homunculus", 0));
             dbh.createDream(new Dream("IT PRO gets A",1));
             dbh.createDream(new Dream("Accepted at UI",1));
