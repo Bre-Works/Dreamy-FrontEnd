@@ -14,6 +14,9 @@ public class dreamyAccount extends SugarRecord<dreamyAccount> {
         String username;
         String password;
 
+        List<Integer> dream_id;
+
+
         // constructors
         public dreamyAccount() {
         }
@@ -27,6 +30,13 @@ public class dreamyAccount extends SugarRecord<dreamyAccount> {
         public static void createAccount(String email, String username, String password){
             dreamyAccount account = new dreamyAccount(email, username, password);
             account.save();
+
+        public dreamyAccount(String email, String username ,String password, List<Integer> dream_id) {
+            this.email = email;
+            this.password = password;
+            this.username = username;
+            this.dream_id = dream_id;
+
         }
 
         public List<dreamyAccount> allUser(){

@@ -55,12 +55,20 @@ public class Main extends Activity {
 
             dr1.save(); dr2.save(); dr3.save(); dr4.save(); dr5.save();
 
+
             Milestone a = new Milestone("Finish Database",1,dr1);
             Milestone b = new Milestone("Finish UI",1,dr1);
             Milestone c = new Milestone("Finish BackEnd",1,dr1);
             Milestone d = new Milestone("Finish FrontEnd",1,dr1);
 
             a.save(); b.save(); c.save(); d.save();
+
+            Dream new Dream("Conquer The World", 0),miles);
+            dbh.createDream(new Dream("Make a Homunculus", 0));
+            dbh.createDream(new Dream("IT PRO gets A",1));
+            dbh.createDream(new Dream("Accepted at UI",1));
+            dbh.createDream(da);
+
 
         // Reading all contacts
 

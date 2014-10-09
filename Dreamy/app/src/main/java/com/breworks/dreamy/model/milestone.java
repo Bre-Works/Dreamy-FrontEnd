@@ -10,8 +10,12 @@ public class Milestone extends SugarRecord<Milestone> {
     String name;
     int status;
 
+
     //build relationship
     Dream dream;
+
+    List<Integer> todo_id;
+
 
     // constructors
     public Milestone() {
@@ -27,6 +31,12 @@ public class Milestone extends SugarRecord<Milestone> {
         this.name = name;
         this.status = status;
         this.dream = dr;
+
+    public Milestone(String name, int status,List<Integer> todo_id) {
+        this.name = name;
+        this.status = status;
+        this.todo_id = todo_id;
+
     }
 
 
