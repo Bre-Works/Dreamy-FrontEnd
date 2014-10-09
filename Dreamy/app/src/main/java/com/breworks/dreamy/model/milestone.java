@@ -30,5 +30,12 @@ public class Milestone extends SugarRecord<Milestone> {
     }
 
 
+    public String getName(){
+        return this.name;
+    }
+
+    public int getStatus(){
+        return this.status;
+    }
 }
 
