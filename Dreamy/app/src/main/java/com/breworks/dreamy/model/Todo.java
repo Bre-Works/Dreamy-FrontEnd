@@ -10,6 +10,9 @@ public class Todo extends SugarRecord<Todo>{
         String name;
         int status;
 
+        //build relationship
+        Milestone miles;
+
         // constructors
         public Todo() {
         }
@@ -17,5 +20,12 @@ public class Todo extends SugarRecord<Todo>{
         public Todo(String name, int status) {
             this.name = name;
             this.status = status;
+            this.miles = null;
+        }
+
+        public Todo(String name, int status, Milestone mil) {
+            this.name = name;
+            this.status = status;
+            this.miles = mil;
         }
 }

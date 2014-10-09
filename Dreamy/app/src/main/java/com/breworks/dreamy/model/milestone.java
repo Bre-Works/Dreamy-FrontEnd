@@ -2,8 +2,6 @@ package com.breworks.dreamy.model;
 
 import com.orm.SugarRecord;
 
-import java.util.List;
-
 /**
  * Created by Ryan on 05/10/2014.
  */
@@ -11,7 +9,9 @@ public class Milestone extends SugarRecord<Milestone> {
 
     String name;
     int status;
-    List<Long> todo_id;
+
+    //build relationship
+    Dream dream;
 
     // constructors
     public Milestone() {
@@ -20,15 +20,15 @@ public class Milestone extends SugarRecord<Milestone> {
     public Milestone(String name, int status) {
         this.name = name;
         this.status = status;
+        this.dream = null;
     }
 
-    public Milestone(String name, int status,List<Todo> todos) {
+    public Milestone(String name, int status, Dream dr) {
         this.name = name;
         this.status = status;
-        for(Todo todo : todos) {
-            this.todo_id.add(todo.getId());
-        }
+        this.dream = dr;
     }
+
 
 }
 
