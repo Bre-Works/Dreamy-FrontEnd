@@ -2,6 +2,8 @@ package com.breworks.dreamy.model;
 
 import com.orm.SugarRecord;
 
+import java.util.List;
+
 /**
  * Created by Luck Eater on 10/4/2014.
  */
@@ -22,10 +24,16 @@ public class dreamyAccount extends SugarRecord<dreamyAccount> {
             this.username = username;
         }
 
-        public void createAccount(String email, String username, String password){
+        public static void createAccount(String email, String username, String password){
             dreamyAccount account = new dreamyAccount(email, username, password);
             account.save();
         }
+
+        public List<dreamyAccount> allUser(){
+            
+        }
+
+
 
         public String getEmail(){
             return this.email;

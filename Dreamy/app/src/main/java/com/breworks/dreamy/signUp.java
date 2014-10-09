@@ -40,8 +40,7 @@ public class signUp extends Activity{
         if(!password.equals(passwordConf))
             Toast.makeText(getApplicationContext(), "Password and password confirmation did not match!", Toast.LENGTH_SHORT).show();
         else {
-            dreamyAccount account = new dreamyAccount();
-            account.createAccount(email, username, password);
+            dreamyAccount.createAccount(email, username, password);
             Toast.makeText(getApplicationContext(), "Your account is now ready. Please login.", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, logIn.class);
             startActivity(intent);
