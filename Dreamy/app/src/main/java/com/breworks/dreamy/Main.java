@@ -55,7 +55,7 @@ public class Main extends Activity {
             miles.add(c);
             miles.add(d);
 
-            Dream new Dream("Conquer The World", 0),miles);
+            Dream dr1 = new Dream("Conquer The World", 0,miles);
             dbh.createDream(new Dream("Make a Homunculus", 0));
             dbh.createDream(new Dream("IT PRO gets A",1));
             dbh.createDream(new Dream("Accepted at UI",1));

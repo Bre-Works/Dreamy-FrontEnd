@@ -11,7 +11,7 @@ public class Dream extends SugarRecord<Dream>{
 
     String name;
     int status;
-    List<Integer> miles_id;
+    List<Long> miles_id;
 
     // constructors
     public Dream() {
@@ -22,10 +22,12 @@ public class Dream extends SugarRecord<Dream>{
         this.status = status;
     }
 
-    public Dream(String name, int status,List<Integer> miles_id) {
+    public Dream(String name, int status,List<Milestone> miles) {
         this.name = name;
         this.status = status;
-        this.miles_id = miles_id;
+        for(Milestone mi : miles) {
+            this.miles_id.add(mi.getId());
+        }
     }
 
 }

@@ -13,7 +13,7 @@ public class dreamyAccount extends SugarRecord<dreamyAccount> {
         String email;
         String username;
         String password;
-        List<Integer> dream_id;
+        List<Long> dream_id;
 
         // constructors
         public dreamyAccount() {
@@ -25,11 +25,13 @@ public class dreamyAccount extends SugarRecord<dreamyAccount> {
             this.username = username;
         }
 
-        public dreamyAccount(String email, String username ,String password, List<Integer> dream_id) {
+        public dreamyAccount(String email, String username ,String password, List<Dream> dreams) {
             this.email = email;
             this.password = password;
             this.username = username;
-            this.dream_id = dream_id;
+            for(Dream dr : dreams) {
+                this.dream_id.add(dr.getId());
+            }
         }
 
 

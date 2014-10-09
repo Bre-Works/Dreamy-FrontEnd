@@ -11,7 +11,7 @@ public class Milestone extends SugarRecord<Milestone> {
 
     String name;
     int status;
-    List<Integer> todo_id;
+    List<Long> todo_id;
 
     // constructors
     public Milestone() {
@@ -22,10 +22,12 @@ public class Milestone extends SugarRecord<Milestone> {
         this.status = status;
     }
 
-    public Milestone(String name, int status,List<Integer> todo_id) {
+    public Milestone(String name, int status,List<Todo> todos) {
         this.name = name;
         this.status = status;
-        this.todo_id = todo_id;
+        for(Todo todo : todos) {
+            this.todo_id.add(todo.getId());
+        }
     }
 
 }
