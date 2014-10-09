@@ -11,7 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
-import com.breworks.dreamy.model.milestone;
+import com.breworks.dreamy.model.Dream;
+import com.breworks.dreamy.model.Milestone;
 
 import java.util.List;
 
@@ -35,17 +36,19 @@ public class DreamyForm extends Activity{
         container = (LinearLayout) findViewById(R.id.container);
         dreamInput = (EditText) findViewById(R.id.dreamInput);
 
-        DBHelper dbh = new DBHelper(this);
         Intent intent;
         if(getIntent() != null) {
             intent = getIntent();
-            String dream = intent.getStringExtra("key");
-            dreamInput.setText(dream);
+            long dream = intent.getLongExtra("key",0);
+            Dream dr = dbh.getDreamwithID(dream);
+            dreamInput.setText(dr.getName());
             if(dbh.getAllMilestonesByDreams(dream) != null) {
-                List<milestone> miles = dbh.getAllMilestonesByDreams(dream);
-                for (final milestone mil : miles) {
+                List<Milestone> miles = dbh.getAllMilestonesByDreams(dream);
+
+                for (Milestone mil : miles) {
                     LayoutInflater inflater = (LayoutInflater) getBaseContext().getSystemService
                             (Context.LAYOUT_INFLATER_SERVICE);
+
                     final View addView = inflater.inflate(R.layout.dreamy_form_row, null);
 
                     removeMilestone = (ImageButton) addView.findViewById(R.id.delMilestone);

@@ -1,14 +1,17 @@
 package com.breworks.dreamy.model;
 
+import com.orm.SugarRecord;
+
+import java.util.List;
+
 /**
  * Created by Ryan on 05/10/2014.
  */
-public class Dream {
+public class Dream extends SugarRecord<Dream>{
 
-    int id;
     String name;
     int status;
-    String created_at;
+    List<Long> miles_id;
 
     // constructors
     public Dream() {
@@ -19,39 +22,12 @@ public class Dream {
         this.status = status;
     }
 
-    public Dream(int id, String name, int status) {
-        this.id = id;
+    public Dream(String name, int status,List<Milestone> miles) {
         this.name = name;
         this.status = status;
+        for(Milestone mi : miles) {
+            this.miles_id.add(mi.getId());
+        }
     }
 
-    // setters
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public void setCreatedAt(String created_at){
-        this.created_at = created_at;
-    }
-
-    // getters
-    public long getId() {
-        return this.id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public int getStatus() {
-        return this.status;
-    }
 }

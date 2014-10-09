@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.breworks.dreamy.model.Dream;
-import com.breworks.dreamy.model.milestone;
+import com.breworks.dreamy.model.Milestone;
 import com.breworks.dreamy.tabpanel.MyTabHostProvider;
 import com.breworks.dreamy.tabpanel.TabHostProvider;
 import com.breworks.dreamy.tabpanel.TabView;
@@ -37,22 +37,27 @@ public class Main extends Activity {
         setContentView(tabView.render(0));
         linearView = (LinearLayout) findViewById(R.id.linearView);
 
-        DBHelper dbh = new DBHelper(this);
-
         // Inserting Contacts
             Log.d("Insert: ", "Inserting ..");
-            dbh.deleteAllDreams();
+
             Dream da = new Dream("Around the World",1);
 
-            List<milestone> miles = new ArrayList<milestone>();
-            miles.add(new milestone("Finish Database",1));
-            miles.add(new milestone("Finish UserInterface",1));
-            miles.add(new milestone("Finish BackEnd",1));
-            miles.add(new milestone("Finish FrontEnd",1));
+            Milestone a = new Milestone("Finish Database",1);
+            Milestone b = new Milestone("Finish UI",1);
+            Milestone c = new Milestone("Finish BackEnd",1);
+            Milestone d = new Milestone("Finish FrontEnd",1);
 
-            dbh.createDream(new Dream("Conquer The World", 0));
+            a.save(); b.save(); c.save(); d.save();
+
+            List<Milestone> miles = new ArrayList<Milestone>();
+            miles.add(a);
+            miles.add(b);
+            miles.add(c);
+            miles.add(d);
+
+            Dream dr1 = new Dream("Conquer The World", 0,miles);
             dbh.createDream(new Dream("Make a Homunculus", 0));
-            dbh.createDream(new Dream("IT PRO gets A",1),miles);
+            dbh.createDream(new Dream("IT PRO gets A",1));
             dbh.createDream(new Dream("Accepted at UI",1));
             dbh.createDream(da);
 
@@ -79,7 +84,7 @@ public class Main extends Activity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(Main.this, DreamyForm.class);
-                    intent.putExtra("key",dr.getName());
+                    intent.putExtra("key",dr.getId());
                     startActivity(intent);
                 }
             });
