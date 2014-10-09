@@ -28,12 +28,4 @@ public class Dream extends SugarRecord<Dream>{
         this.status = status;
         this.account = acc;
     }
-
-    public String getName(){
-        return this.name;
-    }
-
-    public int getStatus(){
-        return this.status;
-    }
 }

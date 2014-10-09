@@ -1,11 +1,13 @@
 package com.breworks.dreamy;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -14,10 +16,12 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.view.inputmethod.EditorInfo;
+
 import com.breworks.dreamy.model.Todo;
 import com.breworks.dreamy.tabpanel.MyTabHostProvider;
 import com.breworks.dreamy.tabpanel.TabHostProvider;
 import com.breworks.dreamy.tabpanel.TabView;
+
 import java.util.ArrayList;
 
 /**
@@ -33,6 +37,7 @@ public class ToDoList extends Activity {
     CheckBox checkBox1;
     EditText textField1;
     OnEditorActionListener taskEnter;
+    DBHelper db;
     Display display;
     Point screenSize;
     int screenWidth;

@@ -28,13 +28,4 @@ public class Todo extends SugarRecord<Todo>{
             this.status = status;
             this.miles = mil;
         }
-
-        public String getName(){
-            return this.name;
-        }
-
-        public int getStatus(){
-            return this.status;
-        }
-
 }
