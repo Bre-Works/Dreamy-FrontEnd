@@ -27,8 +27,16 @@ public class dreamyAccount extends SugarRecord<dreamyAccount> {
             account.save();
         }
 
+        public String getEmail(){
+            return this.email;
+        }
 
+        public String getPassword(){
+            return this.password;
+        }
 
-
-    }
+        public String getUsername(){
+            return this.username;
+        }
+}
 
