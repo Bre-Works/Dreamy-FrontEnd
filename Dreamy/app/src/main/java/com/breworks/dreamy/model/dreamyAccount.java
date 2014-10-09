@@ -39,9 +39,9 @@ public class dreamyAccount extends SugarRecord<dreamyAccount> {
 
         }
 
-        public List<dreamyAccount> allUser(){
+        //public List<dreamyAccount> allUser(){
             
-        }
+        //}
 
 
 
