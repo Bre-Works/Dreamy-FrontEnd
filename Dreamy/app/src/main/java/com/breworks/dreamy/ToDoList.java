@@ -2,9 +2,12 @@ package com.breworks.dreamy;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -14,6 +17,7 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.view.inputmethod.EditorInfo;
 
+import com.breworks.dreamy.model.Todo;
 import com.breworks.dreamy.tabpanel.MyTabHostProvider;
 import com.breworks.dreamy.tabpanel.TabHostProvider;
 import com.breworks.dreamy.tabpanel.TabView;
@@ -32,8 +36,12 @@ public class ToDoList extends Activity {
     TableLayout table;
     CheckBox checkBox1;
     EditText textField1;
-    OnEditorActionListener newTextField;
-
+    OnEditorActionListener taskEnter;
+    DBHelper db;
+    Display display;
+    Point screenSize;
+    int screenWidth;
+    int fieldWidth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +56,15 @@ public class ToDoList extends Activity {
         testText = (TextView) findViewById(R.id.textTitle);
         textField1 = (EditText) findViewById(R.id.textField1);
         checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
-
         checkBoxes.add(checkBox1);
 
+        // Scaling
+        display = getWindowManager().getDefaultDisplay();
+        screenSize = new Point();
+        display.getSize(screenSize);
+        screenWidth = screenSize.x;
+        fieldWidth = (int) (screenWidth * 0.7);
+        textField1.getLayoutParams().width = fieldWidth;
 
         View.OnClickListener oclBtnClear = new View.OnClickListener() {
             @Override
@@ -67,10 +81,12 @@ public class ToDoList extends Activity {
             }
         };
 
-        newTextField = new OnEditorActionListener() {
+        taskEnter = new OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_DOWN) {
+                if (v.getText().toString().trim().length() > 0 && actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_DOWN) {
                     createTaskRow();
+                    return true;
+                } else if (actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_DOWN) {
                     return true;
                 }
                 return false;
@@ -78,7 +94,7 @@ public class ToDoList extends Activity {
         };
 
         btnClear.setOnClickListener(oclBtnClear);
-        textField1.setOnEditorActionListener(newTextField);
+        textField1.setOnEditorActionListener(taskEnter);
     }
 
     protected void createTaskRow() {
@@ -94,10 +110,10 @@ public class ToDoList extends Activity {
     }
 
     protected void setEditTextAttributes(EditText et) {
-        et.setOnEditorActionListener(newTextField);
+        et.setOnEditorActionListener(taskEnter);
         et.requestFocus();
-        et.setMaxLines(1);
         et.setLayoutParams(new TableRow.LayoutParams(2));
+        et.getLayoutParams().width = fieldWidth;
     }
 
 }
